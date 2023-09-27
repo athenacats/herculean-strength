@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Yanone_Kaffeesatz } from "next/font/google";
+import { Yanone_Kaffeesatz } from "next/font/google";
 
 const yanone = Yanone_Kaffeesatz({ subsets: ["latin"] });
 
