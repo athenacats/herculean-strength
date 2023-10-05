@@ -1,20 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { StrengthApp } from "./../AppProvider";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function SignIn() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailValid, setEmailValid] = useState(true);
-  const [passwordValid, setPasswordValid] = useState(true);
-  const [passwordMatch, setPasswordMatch] = useState(true);
+  const router = useRouter();
 
-  const userLogin = (e: React.SyntheticEvent) => {
+  const { state, dispatch } = useContext(StrengthApp);
+  const { userInfo } = state;
+
+  const userSignUp = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    axios
+      .post("api/register", {
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+      })
+
+      /*dispatch({ type: "USER_SIGNIN", payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      router.push("/");*/
+      .catch((err) => console.log(err));
   };
 
   const emailRegex = /\S+@\S+\.\S+/;
@@ -30,7 +45,7 @@ export default function SignIn() {
     <div className="h-96 flex flex-col justify-around items-center pt-10">
       <h3 className="text-center text-4xl">Sign up</h3>
       <Form
-        onSubmit={userLogin}
+        onSubmit={userSignUp}
         className="flex flex-col h-48 justify-around items-center m-auto"
       >
         <Form.Group controlId="name">
