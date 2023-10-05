@@ -5,8 +5,10 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 export default function SignIn() {
+  const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const userLogin = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -14,18 +16,29 @@ export default function SignIn() {
 
   const isFormValid = () => {
     const emailValid = /\S+@\S+\.\S+/.test(userEmail);
-    const passwordValid = userPassword.length >= 6;
+    const passwordValid =
+      userPassword.length >= 6 && userPassword === confirmPassword;
 
     return emailValid && passwordValid;
   };
 
   return (
     <div className="h-600 flex flex-col justify-around items-center mt-20">
-      <h3 className="text-center text-4xl">Log in to your account</h3>
+      <h3 className="text-center text-4xl">Sign up</h3>
       <Form
         onSubmit={userLogin}
         className="flex flex-col h-48 justify-around items-center m-auto"
       >
+        <Form.Group controlId="name">
+          <Form.Control
+            className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+            type="name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            placeholder="Username"
+            required
+          ></Form.Control>
+        </Form.Group>
         <Form.Group controlId="email">
           <Form.Control
             className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
@@ -36,7 +49,7 @@ export default function SignIn() {
             required
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
+        <Form.Group controlId="password">
           <Form.Control
             className="border-2 w-52 pl-2 rounded-lg border-amber-600 focus:border-amber-400"
             type="password"
@@ -46,23 +59,32 @@ export default function SignIn() {
             required
           ></Form.Control>
         </Form.Group>
-
+        <Form.Group controlId="password">
+          <Form.Control
+            className="border-2 w-52 pl-2 rounded-lg border-amber-600 focus:border-amber-400"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm Password"
+            required
+          ></Form.Control>
+        </Form.Group>
         <Button
           className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
           type="submit"
           disabled={!isFormValid()}
         >
-          Login
+          Sign Up
         </Button>
       </Form>
       <div className="m-100">
-        New customer?
+        Existing customer?
         <Link
-          href="/signup"
+          href="/signin"
           className="underline decoration-1 hover:cursor-pointer"
         >
           {" "}
-          Create your account
+          Log in to your account
         </Link>
       </div>
     </div>

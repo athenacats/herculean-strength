@@ -36,7 +36,7 @@ export default function SignIn() {
             required
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
+        <Form.Group controlId="password">
           <Form.Control
             className="border-2 w-52 pl-2 rounded-lg border-amber-600 focus:border-amber-400"
             type="password"
