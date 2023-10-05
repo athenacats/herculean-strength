@@ -1,6 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Yanone_Kaffeesatz } from "next/font/google";
+import Image from "next/image";
+import logo from "./assets/icons8-powerlifting-64.png";
+import Head from "next/head";
+import Link from "next/link";
 
 const yanone = Yanone_Kaffeesatz({ subsets: ["latin"] });
 
@@ -16,7 +20,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={yanone.className}>{children}</body>
+      <body className={yanone.className}>
+        <header className="flex justify-center">
+          <Link href="/">
+            <Image
+              height={64}
+              width={64}
+              alt="powerlifting icon from icons8"
+              src={logo}
+            ></Image>
+          </Link>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }

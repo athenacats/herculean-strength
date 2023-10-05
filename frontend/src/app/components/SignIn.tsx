@@ -20,7 +20,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="h-600 flex flex-col justify-around items-center mt-20">
+    <div className="h-96 flex flex-col justify-around items-center pt-10">
       <h3 className="text-center text-4xl">Log in to your account</h3>
       <Form
         onSubmit={userLogin}

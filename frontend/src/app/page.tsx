@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen justify-around items-center">
+    <div className="flex flex-col h-96 pt-10 justify-around items-center">
       <h1 className="text-4xl text-center">Welcome to Herculean Strength</h1>
       <h3 className="text-2xl text-center">
         Your strength journey starts here
