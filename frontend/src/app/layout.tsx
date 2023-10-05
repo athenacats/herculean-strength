@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Yanone_Kaffeesatz } from "next/font/google";
 import Image from "next/image";
 import logo from "./assets/icons8-powerlifting-64.png";
-import Head from "next/head";
 import Link from "next/link";
 
 const yanone = Yanone_Kaffeesatz({ subsets: ["latin"] });
