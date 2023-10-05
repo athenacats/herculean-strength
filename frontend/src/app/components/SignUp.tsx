@@ -9,17 +9,21 @@ export default function SignIn() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const userLogin = (e: React.SyntheticEvent) => {
     e.preventDefault();
   };
 
-  const isFormValid = () => {
-    const emailValid = /\S+@\S+\.\S+/.test(userEmail);
-    const passwordValid =
-      userPassword.length >= 6 && userPassword === confirmPassword;
+  const emailRegex = /\S+@\S+\.\S+/;
+  const isEmailValid = emailRegex.test(userEmail);
+  const isPasswordValid = userPassword.length >= 6;
+  const doPasswordsMatch = userPassword === confirmPassword;
 
-    return emailValid && passwordValid;
+  const isFormValid = () => {
+    return isEmailValid && isPasswordValid && doPasswordsMatch;
   };
 
   return (
@@ -86,6 +90,17 @@ export default function SignIn() {
           {" "}
           Log in to your account
         </Link>
+      </div>
+      <div className="pt-2">
+        {!isEmailValid && <h4 className="text-sm">* Email is not valid</h4>}
+        {!isPasswordValid && (
+          <h4 className="text-sm">
+            * Password should be more than 6 characters long
+          </h4>
+        )}
+        {!doPasswordsMatch && (
+          <h4 className="text-sm">* Passwords do not match</h4>
+        )}
       </div>
     </div>
   );
