@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 export interface User {
   id: string;
@@ -8,7 +8,7 @@ export interface User {
   isAdmin: boolean;
 }
 
-export const UserSchema = new Schema<User>(
+export const userSchema = new Schema<User>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -25,3 +25,6 @@ export const UserSchema = new Schema<User>(
     },
   }
 );
+
+export const UserModel =
+  models.user || mongoose.model<User>("users", userSchema);

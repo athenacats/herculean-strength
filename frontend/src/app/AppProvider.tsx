@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+/*import React, { useReducer } from "react";
 import { UserInfo } from "./types/UserInfo";
 
 type StrengthAppState = {
@@ -69,3 +69,4 @@ function StrengthAppProvider(props: React.PropsWithChildren<object>) {
 }
 
 export { StrengthApp, StrengthAppProvider };
+*/

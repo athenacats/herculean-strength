@@ -3,19 +3,19 @@
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { StrengthApp } from "./../AppProvider";
+//import { StrengthApp } from "./../AppProvider";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-export default function SignIn() {
+export default function SignUp() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
-  const { state, dispatch } = useContext(StrengthApp);
-  const { userInfo } = state;
+  //const { state, dispatch } = useContext(StrengthApp);
+  // const { userInfo } = state;
 
   const userSignUp = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ export default function SignIn() {
         email: userEmail,
         password: userPassword,
       })
-
+      .then(() => router.push("/"))
       /*dispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
       router.push("/");*/
