@@ -16,19 +16,16 @@ export async function POST(req: any, res: any) {
     }*/
     const encryptedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = (await UserModel.create({
+    const newUser = new UserModel({
       id: "",
       name,
       email: email.toLowerCase(),
       password: encryptedPassword,
       isAdmin: false,
-    })) as User;
-    res.json({
-      _id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      isAdmin: newUser.isAdmin,
     });
+    console.log(newUser);
+    await newUser.save();
+
     return NextResponse.json({ message: "User registered" });
   } catch (error) {
     return NextResponse.json({ message: "An error occured" });
