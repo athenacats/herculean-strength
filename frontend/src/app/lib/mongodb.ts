@@ -1,16 +1,17 @@
-import { ConnectOptions, connect } from "mongoose";
+import mongoose, { ConnectOptions, connect } from "mongoose";
 
 export const dbConnect = async () => {
   try {
-    await connect(
-      "mongodb+srv://chenalonya:7M4pm80sedTR93zy@cluster0.ojb8tyg.mongodb.net/herculean?retryWrites=true&w=majority",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      } as ConnectOptions
+    const conn = await mongoose.connect(process.env.MONGO_URI!, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    } as ConnectOptions);
+    console.log(
+      process.env.MONGO_URI,
+      `Connected succesfully  ${conn.connection.host}`
     );
-    console.log(process.env.MONGO_URI, "Connected succesfully");
   } catch (error) {
     console.log(process.env.MONGO_URI, error);
+    process.exit(1);
   }
 };

@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 export interface User {
   id: string;
@@ -26,4 +26,5 @@ export const userSchema = new Schema<User>(
   }
 );
 
-export const UserModel = model<User>("user", userSchema);
+export const UserModel =
+  mongoose.models.User || mongoose.model<User>("user", userSchema);
