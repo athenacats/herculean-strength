@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-query-devtools": "4.35.3",
-    "axios": "1.5.1",
+    "@tanstack/react-query-devtools": "5.8.4",
+    "axios": "1.6.2",
     "bcryptjs": "2.4.3",
     "bootstrap": "5.3.2",
     "dotenv": "16.3.1",
     "jsonwebtoken": "9.0.2",
-    "mongoose": "7.5.4",
-    "next": "13.5.4",
-    "next-auth": "4.23.2",
+    "mongoose": "8.0.0",
+    "next": "14.0.2",
+    "next-auth": "4.24.5",
     "react": "latest",
-    "react-bootstrap": "2.9.0"
+    "react-bootstrap": "2.9.1"
   },
   "devDependencies": {
-    "@types/bcryptjs": "2.4.4",
+    "@types/bcryptjs": "2.4.6",
     "@types/node": "latest",
     "@types/react": "latest",
     "autoprefixer": "latest",
