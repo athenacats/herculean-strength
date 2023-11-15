@@ -2,10 +2,9 @@ import mongoose, { ConnectOptions, connect } from "mongoose";
 
 export const dbConnect = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI!, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    } as ConnectOptions);
+    const conn = await mongoose.connect(
+      "mongodb+srv://chenalonya:7M4pm80sedTR93zy@cluster0.ojb8tyg.mongodb.net/herculean?retryWrites=true&w=majority"
+    );
     console.log(
       process.env.MONGO_URI,
       `Connected succesfully  ${conn.connection.host}`
