@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-
+dotenv.config();
 import { NextResponse } from "next/server";
 import { dbConnect } from "./../../lib/mongodb";
 import { User, UserModel } from "@/app/models/user.model";
@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req: any, res: any) {
   try {
-    dotenv.config();
     await dbConnect();
     const { name, email, password } = await req.json();
     console.log(name);
