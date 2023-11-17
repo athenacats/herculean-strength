@@ -12,13 +12,23 @@ export default function SignUp() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
 
   //const { state, dispatch } = useContext(StrengthApp);
   // const { userInfo } = state;
 
-  const userSignUp = (e: React.SyntheticEvent) => {
+  const userSignUp = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    const user = axios.post("api/userExists", {
+      email: userEmail,
+    });
+
+    if (await user) {
+      setError("User already exists");
+      return;
+    }
     axios
       .post("api/register", {
         name: userName,
@@ -116,6 +126,7 @@ export default function SignUp() {
         {!doPasswordsMatch && (
           <h4 className="text-sm">* Passwords do not match</h4>
         )}
+        {error && <h3 className="text-lg text-red-800"> *{error}</h3>}
       </div>
     </div>
   );

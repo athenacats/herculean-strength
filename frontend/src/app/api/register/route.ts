@@ -11,11 +11,11 @@ export async function POST(req: any, res: any) {
     const { name, email, password } = await req.json();
     console.log(name);
 
-    const user = await UserModel.findOne({ email });
+    /*const user = await UserModel.findOne({ email });
     if (user) {
       res.status(400).send("User already esist");
       return;
-    }
+    }*/
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new UserModel({
