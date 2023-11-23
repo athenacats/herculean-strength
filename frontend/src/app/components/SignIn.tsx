@@ -3,14 +3,38 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const userLogin = (e: React.SyntheticEvent) => {
+  const userLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    try {
+      const res = await signIn("credentials", {
+        email: userEmail,
+        password: userPassword,
+        redirect: false,
+      });
+      if (res!.error) {
+        setError("Invalid Credentials");
+        return;
+      }
+      router.replace("dashboard");
+      console.log("success");
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const emailRegex = /\S+@\S+\.\S+/;
+  const isEmailValid = emailRegex.test(userEmail);
+  const isPasswordValid = userPassword.length >= 6;
 
   const isFormValid = () => {
     const emailValid = /\S+@\S+\.\S+/.test(userEmail);
@@ -64,6 +88,15 @@ export default function SignIn() {
           {" "}
           Create your account
         </Link>
+        <div className="pt-2">
+          {!isEmailValid && <h4 className="text-sm">* Email is not valid</h4>}
+          {!isPasswordValid && (
+            <h4 className="text-sm">
+              * Password should be more than 6 characters long
+            </h4>
+          )}
+          {error && <h3 className="text-lg text-red-800"> *{error}</h3>}
+        </div>
       </div>
     </div>
   );
