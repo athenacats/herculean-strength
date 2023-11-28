@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import { dbConnect } from "@/app/lib/mongodb";
 import { User, UserModel } from "@/app/models/user.model";
 import NextAuth from "next-auth/next";
