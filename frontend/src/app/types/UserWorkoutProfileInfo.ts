@@ -19,4 +19,5 @@ export type UserWorkoutProfileInfo = {
   goalDeadliftMax: number;
   specialization: string;
   notifications: boolean;
+  completed: boolean;
 };
