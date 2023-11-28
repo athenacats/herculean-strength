@@ -2,6 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function Dashboard() {
@@ -18,7 +19,7 @@ export default function Dashboard() {
     }
   };
   return (
-    <div className="grid place-items-center h-screen">
+    <div className="flex flex-col justify-between h-96 items-center">
       <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
         <div>
           Name: <span className="font-bold">{session?.user?.name}</span>
@@ -28,11 +29,16 @@ export default function Dashboard() {
         </div>
         <button
           onClick={() => handleSignOut()}
-          className="bg-red-500 text-white font-bold px-6 py-2 mt-3"
+          className="bg-amber-600 p-2 rounded-xl "
         >
           Log Out
         </button>
       </div>
+      <Link href="/newuser">
+        <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
+          New Here? Lets set up your profile!
+        </button>
+      </Link>
     </div>
   );
 }
