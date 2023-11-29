@@ -25,11 +25,13 @@ export default function NewUser() {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleInput = (e: any) => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target;
+    console.log("1", value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    console.log(value);
   };
 
   const handlePrevious = () => {
@@ -77,6 +79,30 @@ export default function NewUser() {
             <input
               type="radio"
               name="heightUnits"
+              value="cm"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            cm
+            <input
+              type="radio"
+              name="heightUnits"
+              value="ft"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            ft
+          </div>
+        );
+      case 4:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">Which units would you prefer?</label>
+            <input
+              type="radio"
+              name="weightUnits"
               value="kg"
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
@@ -85,13 +111,28 @@ export default function NewUser() {
             kg
             <input
               type="radio"
-              name="heightUnits"
+              name="weightUnits"
               value="lb"
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
             />
             lb
+          </div>
+        );
+      case 5:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">Height:</label>
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+              type="text"
+              name="height"
+              value={formData.height}
+              onChange={handleInput}
+              required
+            ></input>
+            {formData.heightUnits}
           </div>
         );
     }
