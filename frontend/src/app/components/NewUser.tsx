@@ -52,6 +52,7 @@ export default function NewUser() {
               name="sex"
               value={formData.sex}
               onChange={handleInput}
+              required
             ></input>
           </div>
         );
@@ -65,7 +66,32 @@ export default function NewUser() {
               name="age"
               value={formData.age}
               onChange={handleInput}
+              required
             ></input>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">Which units would you prefer?</label>
+            <input
+              type="radio"
+              name="heightUnits"
+              value="kg"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            kg
+            <input
+              type="radio"
+              name="heightUnits"
+              value="lb"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            lb
           </div>
         );
     }
