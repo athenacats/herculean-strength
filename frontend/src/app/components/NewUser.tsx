@@ -135,6 +135,21 @@ export default function NewUser() {
             {formData.heightUnits}
           </div>
         );
+      case 6:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">Weight:</label>
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+              type="text"
+              name="weight"
+              value={formData.weight}
+              onChange={handleInput}
+              required
+            ></input>
+            {formData.weightUnits}
+          </div>
+        );
     }
   };
   return (
