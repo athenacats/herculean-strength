@@ -150,10 +150,64 @@ export default function NewUser() {
             {formData.weightUnits}
           </div>
         );
+      case 7:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <label className="text-xl">What are your current goals?</label>
+            <input
+              type="radio"
+              name="goals"
+              value="Gain more strength"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>
+              <strong className="font-bold">Gain more strength:</strong>{" "}
+              I&apos;d like to build my strength and become a mf unit
+            </p>
+            <input
+              type="radio"
+              name="goals"
+              value="Maintainance"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>
+              <strong className="font-bold">Maintainance:</strong> I have no
+              upcoming competition and would like to keep fit
+            </p>
+            <input
+              type="radio"
+              name="goals"
+              value="Bodybulding"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>
+              <strong className="font-bold">Bodybuilding:</strong> I&apos;d like
+              to sculpt my body and look like a mf unit
+            </p>
+            <input
+              type="radio"
+              name="goals"
+              value="Prep"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>
+              <strong className="font-bold">Competition Prep:</strong> I have a
+              comp in the next few weeks that I want to smash
+            </p>
+          </div>
+        );
     }
   };
   return (
-    <div className="flex flex-col h-96 pt-10 justify-around items-center">
+    <div className="flex flex-col h-auto gap-6 pt-10 justify-around items-center">
       <h1 className="text-4xl text-center">
         Let&apos;s answer a few questions to set you up!
       </h1>
