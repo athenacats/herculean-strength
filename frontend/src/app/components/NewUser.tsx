@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
+import { redirect } from "react-router-dom";
 
 export default function NewUser() {
   const { data: session } = useSession();
@@ -49,6 +50,16 @@ export default function NewUser() {
     setFormData((prevData) => ({
       ...prevData,
       currName: "",
+    }));
+  };
+
+  const restartForm = () => {
+    redirect("/newuser");
+  };
+
+  const submitForm = () => {
+    setFormData((prevData) => ({
+      ...prevData,
     }));
   };
 
