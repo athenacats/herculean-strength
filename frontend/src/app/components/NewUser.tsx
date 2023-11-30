@@ -1,7 +1,10 @@
 "use client";
+import { useSession } from "next-auth/react";
+import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
 
 export default function NewUser() {
+  const { data: session } = useSession();
   const [formData, setFormData] = useState({
     sex: "",
     age: "",
@@ -19,12 +22,13 @@ export default function NewUser() {
     goalBenchMax: "",
     goalDeadliftMax: "",
     specialization: "",
-    notifications: "true",
+    notifications: "",
   });
 
   const [currentStep, setCurrentStep] = useState(1);
   const [currError, setCurrError] = useState("");
   const [filled, setFilled] = useState("");
+  const [currName, setCurrName] = useState("");
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -33,6 +37,8 @@ export default function NewUser() {
       ...prevData,
       [name]: value,
     }));
+    console.log(name, value);
+    setCurrName(name);
     setFilled(value);
   };
 
@@ -40,11 +46,17 @@ export default function NewUser() {
     setCurrentStep((prevStep) => prevStep - 1);
     setCurrError("");
     setFilled("");
+    setFormData((prevData) => ({
+      ...prevData,
+      currName: "",
+    }));
   };
 
   const handleNext = () => {
     setCurrentStep((prevStep) => prevStep + 1);
     setFilled("");
+    setCurrName("");
+    console.log(formData);
   };
 
   useEffect(() => {
@@ -52,7 +64,7 @@ export default function NewUser() {
     if (filled !== "") {
       setCurrError("");
     } else {
-      setCurrError("You must select a value");
+      setCurrError("Please select a value");
     }
   }, [filled]);
 
@@ -66,20 +78,22 @@ export default function NewUser() {
               type="radio"
               name="sex"
               value="Male"
+              checked={formData.sex === "Male"}
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
             />
-            <p className="my-auto text-xl"> Male</p>
+            <p className="my-auto text-xl">Male</p>
             <input
               type="radio"
               name="sex"
               value="Female"
+              checked={formData.sex === "Female"}
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
             />
-            <p className="my-auto text-xl"> Female</p>
+            <p className="my-auto text-xl">Female</p>
           </div>
         );
       case 2:
@@ -366,9 +380,10 @@ export default function NewUser() {
               type="number"
               name="goalSquatMax"
               disabled={
-                currError !== "" &&
-                currError !==
-                  "Squat goal must be equal or more than current maxes"
+                currError ===
+                  "Bench goal must be equal or more than current maxes" ||
+                currError ===
+                  "Deadlift goal must be equal or more than current maxes"
               }
               value={formData.goalSquatMax}
               onChange={handleInput}
@@ -387,9 +402,10 @@ export default function NewUser() {
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 disabled:border-slate-700 disabled:cursor-not-allowed "
               type="number"
               disabled={
-                currError !== "" &&
-                currError !==
-                  "Bench goal must be equal or more than current maxes"
+                currError ===
+                  "Squat goal must be equal or more than current maxes" ||
+                currError ===
+                  "Deadlift goal must be equal or more than current maxes"
               }
               name="goalBenchMax"
               value={formData.goalBenchMax}
@@ -409,9 +425,10 @@ export default function NewUser() {
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 disabled:border-slate-700 disabled:cursor-not-allowed "
               type="number"
               disabled={
-                currError !== "" &&
-                currError !==
-                  "Deadlift goal must be equal or more than current maxes"
+                currError ===
+                  "Bench goal must be equal or more than current maxes" ||
+                currError ===
+                  "Squat goal must be equal or more than current maxes"
               }
               name="goalDeadliftMax"
               value={formData.goalDeadliftMax}
@@ -502,6 +519,82 @@ export default function NewUser() {
             <p className="my-auto">Deny</p>
           </div>
         );
+      case 14:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <h3>Here&apos;s a summary of your information</h3>
+            <div>
+              <div>
+                <h4>Name:</h4>
+                <h4>{session?.user?.name}</h4>
+              </div>
+              <div>
+                <h4>Age:</h4>
+                <h4>{formData.age}</h4>
+              </div>
+              <div>
+                <h4>Height:</h4>
+                <h4>
+                  {formData.height} {formData.heightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Weight:</h4>
+                <h4>
+                  {formData.weight} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Goals:</h4>
+                <h4>{formData.goals}</h4>
+              </div>
+              <div>
+                <h4>Experience:</h4>
+                <h4>{formData.experience}</h4>
+              </div>
+              <div>
+                <h4>Current Squat Max:</h4>
+                <h4>
+                  {formData.currSquatMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Current Bench Max:</h4>
+                <h4>
+                  {formData.currBenchMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Current Deadlift Max:</h4>
+                <h4>
+                  {formData.currDeadliftMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Goal Squat Max:</h4>
+                <h4>
+                  {formData.goalSquatMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Goal Bench Max:</h4>
+                <h4>
+                  {formData.goalBenchMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Goal Deadlift Max:</h4>
+                <h4>
+                  {formData.goalDeadliftMax} {formData.weightUnits}
+                </h4>
+              </div>
+              <div>
+                <h4>Specialization:</h4>
+                <h4>{formData.specialization}</h4>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -515,7 +608,7 @@ export default function NewUser() {
       {renderStep()}
 
       <div className="flex gap-6">
-        {currentStep !== 12 ? (
+        {currentStep !== 14 ? (
           <>
             <button
               className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
