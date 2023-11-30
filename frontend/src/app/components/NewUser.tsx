@@ -12,9 +12,9 @@ export default function NewUser() {
     goals: "",
     workoutFrequency: "",
     experience: "",
-    currSquatMax: "60",
-    currBenchMax: "40",
-    currDeadliftMax: "100",
+    currSquatMax: "",
+    currBenchMax: "",
+    currDeadliftMax: "",
     goalSquatMax: "",
     goalBenchMax: "",
     goalDeadliftMax: "",
@@ -281,6 +281,47 @@ export default function NewUser() {
               required
             />
             <p className="my-auto">Advanced</p>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">
+              What are your current maxes? (estimates are okay):
+            </label>
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+              type="number"
+              name="currSquatMax"
+              step={0.1}
+              value={formData.currSquatMax}
+              onChange={handleInput}
+              placeholder="Current Squat Max"
+              required
+            ></input>
+            {formData.weightUnits}
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+              type="number"
+              step={0.1}
+              name="currBenchMax"
+              value={formData.currBenchMax}
+              onChange={handleInput}
+              placeholder="Current Bench Max"
+              required
+            ></input>
+            {formData.weightUnits}
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
+              type="number"
+              step={0.1}
+              name="currDeadliftMax"
+              value={formData.currDeadliftMax}
+              onChange={handleInput}
+              placeholder="Current Deadlift Max"
+              required
+            ></input>
+            {formData.weightUnits}
           </div>
         );
     }
