@@ -204,6 +204,50 @@ export default function NewUser() {
             </p>
           </div>
         );
+      case 8:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <label className="text-xl">
+              What&apos;s your desired workout frequency?
+            </label>
+            <input
+              type="radio"
+              name="workoutFrequency"
+              value="1 - 2 days a week"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>1 - 2 days a week</p>
+            <input
+              type="radio"
+              name="workoutFrequency"
+              value="3 - 4 days a week"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>3 - 4 days a week</p>
+            <input
+              type="radio"
+              name="workoutFrequency"
+              value="5 - 6 days a week"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p>5 - 6 days a week</p>
+            <input
+              type="radio"
+              name="workoutFrequency"
+              value="Daily"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Daily</p>
+          </div>
+        );
     }
   };
   return (
