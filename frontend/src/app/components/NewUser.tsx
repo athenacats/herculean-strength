@@ -248,6 +248,41 @@ export default function NewUser() {
             <p className="my-auto">Daily</p>
           </div>
         );
+      case 9:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <label className="text-xl">
+              How much experience do you have in the gym?
+            </label>
+            <input
+              type="radio"
+              name="experience"
+              value="Beginner"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Beginner</p>
+            <input
+              type="radio"
+              name="experience"
+              value="Intermediate"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Intermediate</p>
+            <input
+              type="radio"
+              name="experience"
+              value="Advanced"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Advanced</p>
+          </div>
+        );
     }
   };
   return (
