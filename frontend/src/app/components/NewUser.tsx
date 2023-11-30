@@ -23,15 +23,15 @@ export default function NewUser() {
   });
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [currError, setCurrError] = useState("");
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
-    console.log("1", value);
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    console.log(value);
   };
 
   const handlePrevious = () => {
@@ -324,6 +324,82 @@ export default function NewUser() {
             {formData.weightUnits}
           </div>
         );
+      case 11:
+        return (
+          <div className="flex gap-4">
+            <label className="text-xl">
+              What are your goal maxes? (estimates are okay):
+            </label>
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 disabled:border-slate-700 disabled:cursor-not-allowed "
+              type="number"
+              name="goalSquatMax"
+              disabled={
+                currError !== "" &&
+                currError !==
+                  "Squat goal must be equal or more than current maxes"
+              }
+              value={formData.goalSquatMax}
+              onChange={handleInput}
+              placeholder="Goal Squat Max"
+              onBlur={() =>
+                formData.goalSquatMax >= formData.currSquatMax
+                  ? setCurrError("")
+                  : setCurrError(
+                      "Squat goal must be equal or more than current maxes"
+                    )
+              }
+              required
+            ></input>
+            {formData.weightUnits}
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 disabled:border-slate-700 disabled:cursor-not-allowed "
+              type="number"
+              disabled={
+                currError !== "" &&
+                currError !==
+                  "Bench goal must be equal or more than current maxes"
+              }
+              name="goalBenchMax"
+              value={formData.goalBenchMax}
+              onChange={handleInput}
+              onBlur={() =>
+                formData.goalBenchMax >= formData.currBenchMax
+                  ? setCurrError("")
+                  : setCurrError(
+                      "Bench goal must be equal or more than current maxes"
+                    )
+              }
+              placeholder="Goal Bench Max"
+              required
+            ></input>
+            {formData.weightUnits}
+            <input
+              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 disabled:border-slate-700 disabled:cursor-not-allowed "
+              type="number"
+              disabled={
+                currError !== "" &&
+                currError !==
+                  "Deadlift goal must be equal or more than current maxes"
+              }
+              name="goalDeadliftMax"
+              value={formData.goalDeadliftMax}
+              onChange={handleInput}
+              onBlur={() => {
+                console.log(formData.goalDeadliftMax, formData.currDeadliftMax);
+                formData.goalDeadliftMax >= formData.currDeadliftMax
+                  ? setCurrError("")
+                  : setCurrError(
+                      "Deadlift goal must be equal or more than current maxes"
+                    );
+                console.log(currError);
+              }}
+              placeholder="Goal Deadlift Max"
+              required
+            ></input>
+            {formData.weightUnits}
+          </div>
+        );
     }
   };
   return (
@@ -337,18 +413,19 @@ export default function NewUser() {
         <button
           className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
           onClick={handlePrevious}
-          disabled={currentStep === 1}
+          disabled={currentStep === 1 || currError !== ""}
         >
           Previous
         </button>
         <button
           className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
           onClick={handleNext}
-          disabled={currentStep === 11}
+          disabled={currentStep === 20 || currError !== ""}
         >
           Next
         </button>
       </div>
+      <div>{currError}</div>
     </div>
   );
 }
