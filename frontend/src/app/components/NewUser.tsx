@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function NewUser() {
   const [formData, setFormData] = useState({
@@ -24,6 +24,7 @@ export default function NewUser() {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [currError, setCurrError] = useState("");
+  const [filled, setFilled] = useState("");
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -32,15 +33,27 @@ export default function NewUser() {
       ...prevData,
       [name]: value,
     }));
+    setFilled(value);
   };
 
   const handlePrevious = () => {
     setCurrentStep((prevStep) => prevStep - 1);
+    setCurrError("");
   };
 
   const handleNext = () => {
     setCurrentStep((prevStep) => prevStep + 1);
+    setFilled("");
   };
+
+  useEffect(() => {
+    console.log(filled);
+    if (filled !== "") {
+      setCurrError("");
+    } else {
+      setCurrError("You must select a value");
+    }
+  }, [filled]);
 
   const renderStep = () => {
     switch (currentStep) {
@@ -49,13 +62,23 @@ export default function NewUser() {
           <div className="flex gap-4">
             <label className="text-xl">Sex:</label>
             <input
-              className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
-              type="text"
+              type="radio"
               name="sex"
-              value={formData.sex}
+              value="Male"
               onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
               required
-            ></input>
+            />
+            <p className="my-auto text-xl"> Male</p>
+            <input
+              type="radio"
+              name="sex"
+              value="Female"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto text-xl"> Female</p>
           </div>
         );
       case 2:
@@ -496,7 +519,7 @@ export default function NewUser() {
             <button
               className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
               onClick={handleNext}
-              disabled={currError !== ""}
+              disabled={currError !== "" || filled === ""}
             >
               Next
             </button>{" "}
