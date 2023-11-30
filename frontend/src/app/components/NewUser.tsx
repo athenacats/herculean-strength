@@ -5,8 +5,8 @@ export default function NewUser() {
   const [formData, setFormData] = useState({
     sex: "",
     age: "",
-    heightUnits: "cm",
-    weightUnits: "kg",
+    heightUnits: "",
+    weightUnits: "",
     weight: "",
     height: "",
     goals: "",
@@ -39,6 +39,7 @@ export default function NewUser() {
   const handlePrevious = () => {
     setCurrentStep((prevStep) => prevStep - 1);
     setCurrError("");
+    setFilled("");
   };
 
   const handleNext = () => {
@@ -87,10 +88,17 @@ export default function NewUser() {
             <label className="text-xl">Age:</label>
             <input
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
-              type="text"
+              type="number"
+              max={99}
+              min={18}
               name="age"
               value={formData.age}
               onChange={handleInput}
+              onBlur={() =>
+                parseInt(formData.age) < 18 || parseInt(formData.age) >= 99
+                  ? setCurrError("Age must be between 18 and 99")
+                  : setCurrError("")
+              }
               required
             ></input>
           </div>
