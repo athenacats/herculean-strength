@@ -400,6 +400,79 @@ export default function NewUser() {
             {formData.weightUnits}
           </div>
         );
+      case 12:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <label className="text-xl">
+              Is there any lift you would like to put more emphasis on?
+            </label>
+            <input
+              type="radio"
+              name="specialization"
+              value="Squat"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Squat</p>
+            <input
+              type="radio"
+              name="specialization"
+              value="Bench"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Bench</p>
+            <input
+              type="radio"
+              name="specialization"
+              value="Deadlift"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Deadlift</p>
+            <input
+              type="radio"
+              name="specialization"
+              value="Balanced"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Balanced</p>
+          </div>
+        );
+      case 13:
+        return (
+          <div className="flex gap-4 w-5/6 justify-center">
+            <label className="text-xl">
+              Lastly, please allow notifications so that you can be up to date
+              with your workouts
+            </label>
+            <input
+              type="radio"
+              name="notifications"
+              value="true"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Allow</p>
+            <input
+              type="radio"
+              name="notifications"
+              value="false"
+              onChange={handleInput}
+              className={`text-xl text-center hover:cursor-pointer`}
+              required
+            />
+            <p className="my-auto">Deny</p>
+          </div>
+        );
+      default:
+        return null;
     }
   };
   return (
@@ -409,21 +482,41 @@ export default function NewUser() {
       </h1>
       <h2 className="text-2xl text-center">Step {currentStep}</h2>
       {renderStep()}
+
       <div className="flex gap-6">
-        <button
-          className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
-          onClick={handlePrevious}
-          disabled={currentStep === 1 || currError !== ""}
-        >
-          Previous
-        </button>
-        <button
-          className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
-          onClick={handleNext}
-          disabled={currentStep === 20 || currError !== ""}
-        >
-          Next
-        </button>
+        {currentStep !== 12 ? (
+          <>
+            <button
+              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              onClick={handlePrevious}
+              disabled={currentStep === 1 || currError !== ""}
+            >
+              Previous
+            </button>
+            <button
+              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              onClick={handleNext}
+              disabled={currError !== ""}
+            >
+              Next
+            </button>{" "}
+          </>
+        ) : (
+          <>
+            <button
+              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              onClick={submitForm}
+            >
+              Submit Form
+            </button>
+            <button
+              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              onClick={restartForm}
+            >
+              Restart Form
+            </button>{" "}
+          </>
+        )}
       </div>
       <div>{currError}</div>
     </div>
