@@ -1,6 +1,5 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
 import { redirect } from "react-router-dom";
 
@@ -38,7 +37,7 @@ export default function NewUser() {
       ...prevData,
       [name]: value,
     }));
-    console.log(name, value);
+
     setCurrName(name);
     setFilled(value);
   };
@@ -64,20 +63,15 @@ export default function NewUser() {
   };
 
   const handleNext = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
+    if (filled === "") {
+      setCurrError("Please select a value");
+    } else {
+      setCurrError("");
+      setCurrentStep((prevStep) => prevStep + 1);
+    }
     setFilled("");
     setCurrName("");
-    console.log(formData);
   };
-
-  useEffect(() => {
-    console.log(filled);
-    if (filled !== "") {
-      setCurrError("");
-    } else {
-      setCurrError("Please select a value");
-    }
-  }, [filled]);
 
   const renderStep = () => {
     switch (currentStep) {
