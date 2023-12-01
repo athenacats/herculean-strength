@@ -1,5 +1,7 @@
 "use client";
+import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { redirect } from "react-router-dom";
 
@@ -29,6 +31,7 @@ export default function NewUser() {
   const [currError, setCurrError] = useState("");
   const [filled, setFilled] = useState("");
   const [currName, setCurrName] = useState("");
+  const router = useRouter();
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -64,10 +67,17 @@ export default function NewUser() {
     setCurrName("");
   };
 
-  const submitForm = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-    }));
+  const submitForm = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    axios
+      .post("api/workoutProfile", {
+        userName: session?.user?.name,
+        userEmail: session?.user?.email,
+        formData: formData,
+      })
+      .then(() => router.push("/home"))
+      .catch((err) => console.log(err));
   };
 
   const handleNext = () => {
