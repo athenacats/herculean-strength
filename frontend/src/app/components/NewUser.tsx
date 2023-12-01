@@ -526,75 +526,77 @@ export default function NewUser() {
         );
       case 14:
         return (
-          <div className="flex gap-4 w-5/6 justify-center">
-            <h3>Here&apos;s a summary of your information</h3>
-            <div>
-              <div>
-                <h4>Name:</h4>
+          <div className="flex flex-col gap-4 w-5/6 justify-center items-center">
+            <h3 className="text-2xl underline">
+              Here&apos;s a summary of your information:
+            </h3>
+            <div className="text-xl w-60">
+              <div className="flex justify-between">
+                <h4 className="text-amber-600">Name:</h4>
                 <h4>{session?.user?.name}</h4>
               </div>
-              <div>
-                <h4>Age:</h4>
+              <div className="flex justify-between">
+                <h4 className="text-amber-600">Age:</h4>
                 <h4>{formData.age}</h4>
               </div>
-              <div>
-                <h4>Height:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Height:</h4>
                 <h4>
                   {formData.height} {formData.heightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Weight:</h4>
+              <div className="flex justify-between">
+                <h4 className="text-amber-600">Weight:</h4>
                 <h4>
                   {formData.weight} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Goals:</h4>
+              <div className="flex justify-between">
+                <h4 className="text-amber-600">Goals:</h4>
                 <h4>{formData.goals}</h4>
               </div>
-              <div>
-                <h4>Experience:</h4>
+              <div className="flex justify-between">
+                <h4 className="text-amber-600">Experience:</h4>
                 <h4>{formData.experience}</h4>
               </div>
-              <div>
-                <h4>Current Squat Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Current Squat Max:</h4>
                 <h4>
                   {formData.currSquatMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Current Bench Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Current Bench Max:</h4>
                 <h4>
                   {formData.currBenchMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Current Deadlift Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Current Deadlift Max:</h4>
                 <h4>
                   {formData.currDeadliftMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Goal Squat Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Goal Squat Max:</h4>
                 <h4>
                   {formData.goalSquatMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Goal Bench Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Goal Bench Max:</h4>
                 <h4>
                   {formData.goalBenchMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Goal Deadlift Max:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Goal Deadlift Max:</h4>
                 <h4>
                   {formData.goalDeadliftMax} {formData.weightUnits}
                 </h4>
               </div>
-              <div>
-                <h4>Specialization:</h4>
+              <div className="flex  justify-between">
+                <h4 className="text-amber-600">Specialization:</h4>
                 <h4>{formData.specialization}</h4>
               </div>
             </div>
