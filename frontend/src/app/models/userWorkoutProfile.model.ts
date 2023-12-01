@@ -3,7 +3,7 @@ import mongoose, { Schema, model, models } from "mongoose";
 
 export const userWorkoutProfileSchema = new Schema<UserWorkoutProfileInfo>(
   {
-    user: { type: Schema, required: true },
+    user: { type: String, required: true },
     sex: { type: String, required: true },
     age: { type: Number, required: true },
     heightUnits: { type: String, required: true },
@@ -20,8 +20,7 @@ export const userWorkoutProfileSchema = new Schema<UserWorkoutProfileInfo>(
     goalBenchMax: { type: Number, required: true },
     goalDeadliftMax: { type: Number, required: true },
     specialization: { type: String, required: true },
-    notifications: { type: Boolean, required: true },
-    completed: { type: Boolean, required: true, default: false },
+    notifications: { type: String, required: true },
   },
   {
     timestamps: true,

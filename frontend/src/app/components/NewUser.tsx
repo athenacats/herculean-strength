@@ -76,7 +76,7 @@ export default function NewUser() {
         userEmail: session?.user?.email,
         formData: formData,
       })
-      .then(() => router.push("/home"))
+      // .then(() => router.push("/home"))
       .catch((err) => console.log(err));
   };
 

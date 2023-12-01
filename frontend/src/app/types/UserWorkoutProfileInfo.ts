@@ -1,7 +1,7 @@
 import { UserInfo } from "./UserInfo";
 
 export type UserWorkoutProfileInfo = {
-  user: UserInfo;
+  user: string;
   sex: string;
   age: number;
   heightUnits: string;
@@ -18,6 +18,5 @@ export type UserWorkoutProfileInfo = {
   goalBenchMax: number;
   goalDeadliftMax: number;
   specialization: string;
-  notifications: boolean;
-  completed: boolean;
+  notifications: string;
 };
