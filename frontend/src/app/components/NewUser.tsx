@@ -53,7 +53,15 @@ export default function NewUser() {
   };
 
   const restartForm = () => {
-    redirect("/newuser");
+    setFormData((prevData) => ({
+      ...(Object.fromEntries(
+        Object.keys(formData).map((key) => [key, ""])
+      ) as typeof formData),
+    }));
+    setCurrentStep(1);
+    setCurrError("");
+    setFilled("");
+    setCurrName("");
   };
 
   const submitForm = () => {
