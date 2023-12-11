@@ -1,36 +1,32 @@
 "use client";
 
-import dotenv from "dotenv";
-dotenv.config();
-
+import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { dbConnect } from "../lib/mongodb";
-import { UserWorkoutProfileModel } from "../models/userWorkoutProfile.model";
-import { useState } from "react";
-import { NextResponse } from "next/server";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const [userWorkoutProfile, setUserWorkoutProfile] = useState(false);
+  const [userWorkoutProfile, setUserWorkoutProfile] = useState("");
   const { data: session } = useSession();
 
   if (session === null) redirect("/signin");
 
-  async function POST(req: any, res: any) {
-    try {
-      await dbConnect();
-      const email = session?.user?.email;
+  useEffect(() => {
+    // Checking if the user has a workout profile. If not, it will display a message asking them to create one.
+    axios
+      .get("api/checkWorkoutProfile")
+      .then((res) => {
+        const hasProfile = res.data;
+        setUserWorkoutProfile(hasProfile);
+        console.log(res.data);
+      })
 
-      const user = await UserWorkoutProfileModel.findOne({ email: email });
-      console.log(user);
-      !user ? setUserWorkoutProfile(false) : setUserWorkoutProfile(true);
-    } catch (error) {
-      console.error("Error during save operation:", error);
-      return NextResponse.json({ message: "An error occured" });
-    }
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -56,7 +52,7 @@ export default function Dashboard() {
           Log Out
         </button>
       </div>
-      {userWorkoutProfile === false ? (
+      {userWorkoutProfile === "" ? (
         <Link href="/newuser">
           <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
             New Here? Lets set up your profile!
@@ -65,6 +61,7 @@ export default function Dashboard() {
       ) : (
         <div>
           <h2>Your Data</h2>
+          <p></p>
         </div>
       )}
     </div>
