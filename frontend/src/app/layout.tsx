@@ -6,7 +6,11 @@ import logo from "./assets/icons8-powerlifting-64.png";
 import Link from "next/link";
 import AuthProvider from "./Providers";
 
-const yanone = Yanone_Kaffeesatz({ subsets: ["latin"] });
+const yanone = Yanone_Kaffeesatz({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: "Herculean Strength",

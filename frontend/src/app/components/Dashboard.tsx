@@ -1,14 +1,36 @@
 "use client";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { dbConnect } from "../lib/mongodb";
+import { UserWorkoutProfileModel } from "../models/userWorkoutProfile.model";
+import { useState } from "react";
+import { NextResponse } from "next/server";
 
 export default function Dashboard() {
+  const [userWorkoutProfile, setUserWorkoutProfile] = useState(false);
   const { data: session } = useSession();
 
   if (session === null) redirect("/signin");
+
+  async function POST(req: any, res: any) {
+    try {
+      await dbConnect();
+      const email = session?.user?.email;
+
+      const user = await UserWorkoutProfileModel.findOne({ email: email });
+      console.log(user);
+      !user ? setUserWorkoutProfile(false) : setUserWorkoutProfile(true);
+    } catch (error) {
+      console.error("Error during save operation:", error);
+      return NextResponse.json({ message: "An error occured" });
+    }
+  }
 
   const handleSignOut = async () => {
     try {
@@ -34,11 +56,17 @@ export default function Dashboard() {
           Log Out
         </button>
       </div>
-      <Link href="/newuser">
-        <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
-          New Here? Lets set up your profile!
-        </button>
-      </Link>
+      {userWorkoutProfile === false ? (
+        <Link href="/newuser">
+          <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
+            New Here? Lets set up your profile!
+          </button>
+        </Link>
+      ) : (
+        <div>
+          <h2>Your Data</h2>
+        </div>
+      )}
     </div>
   );
 }
