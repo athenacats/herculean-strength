@@ -64,8 +64,13 @@ export default function Dashboard() {
         </Link>
       ) : (
         <div>
-          <h2>Your Data</h2>
-          <p>{userWorkoutProfile.user}</p>
+          <h2 className="text-2xl text-center">Your Data</h2>
+          {Object.entries(userWorkoutProfile).map(([key, value]) => (
+            <div key={key} className="flex flex-row justify-start py-4">
+              <div className="w-52 font-semibold">{key}:</div>
+              <div className="ml-4">{value}</div>
+            </div>
+          ))}
         </div>
       )}
     </div>
