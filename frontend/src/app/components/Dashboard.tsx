@@ -6,9 +6,11 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 
 export default function Dashboard() {
-  const [userWorkoutProfile, setUserWorkoutProfile] = useState("");
+  const [userWorkoutProfile, setUserWorkoutProfile] =
+    useState<UserWorkoutProfileInfo | null>(null);
   const { data: session } = useSession();
 
   if (session === null) redirect("/signin");
@@ -52,7 +54,9 @@ export default function Dashboard() {
           Log Out
         </button>
       </div>
-      {userWorkoutProfile === "" ? (
+      {userWorkoutProfile === null ? (
+        <p>Loading...</p>
+      ) : !userWorkoutProfile.user ? (
         <Link href="/newuser">
           <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
             New Here? Lets set up your profile!
@@ -61,7 +65,7 @@ export default function Dashboard() {
       ) : (
         <div>
           <h2>Your Data</h2>
-          <p></p>
+          <p>{userWorkoutProfile.user}</p>
         </div>
       )}
     </div>
