@@ -1,28 +1,42 @@
 import { dbConnect } from "@/app/lib/mongodb";
 import { UserWorkoutProfileModel } from "@/app/models/userWorkoutProfile.model";
 import dotenv from "dotenv";
-import { getSession } from "next-auth/react";
-import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { NextRequest, NextResponse } from "next/server";
 dotenv.config();
 
-export async function GET(req: any, res: any) {
+export async function GET(
+  error: any,
+  req: NextRequest,
+  res: NextResponse,
+  _next: any
+) {
+  console.log("here");
   try {
     await dbConnect();
-    const session = await getSession({ req });
+
+    const session = await getServerSession(authOptions);
+
+    console.log("session: " + session);
 
     if (!session || !session.user) {
-      return res.status(401).json({ error: "Not registered" });
+      return NextResponse.json({ error: "Not registered" });
     }
 
-    const email = session?.user?.email;
+    const user = session?.user?.email;
+    console.log(user);
 
-    const user = await UserWorkoutProfileModel.findOne({ email: email });
+    const userFound = await UserWorkoutProfileModel.findOne({ user: user });
+    console.log(userFound);
 
-    user
-      ? res.status(200).json(user)
-      : res.status(404).json({ error: "Not registered" });
+    if (userFound) {
+      return NextResponse.json(userFound);
+    } else {
+      return NextResponse.json({ error: "Not registered" });
+    }
   } catch (error) {
     console.error("Error during save operation:", error);
-    return NextResponse.json({ message: "An error occured" });
+    return NextResponse.json({ message: "An error occurred" });
   }
 }
