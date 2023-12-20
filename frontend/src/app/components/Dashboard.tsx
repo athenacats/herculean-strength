@@ -63,9 +63,9 @@ export default function Dashboard() {
           </button>
         </Link>
       ) : (
-        <div className="w-5/6 flex flex-col justify-center items-center">
+        <div className="w-5/6 flex flex-col justify-center items-center gap-8">
           <h2 className="text-2xl text-center">Your Data</h2>
-          <div className="text-xl w-5/6">
+          <div className="text-l w-5/6 flex flex-col gap-2">
             <div className="flex justify-between">
               <h4 className="text-amber-600">Age:</h4>
               <h4>{userWorkoutProfile.age}</h4>
