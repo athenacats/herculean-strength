@@ -11,6 +11,7 @@ import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 export default function Dashboard() {
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
+  const [dataError, setDataError] = useState("");
   const { data: session } = useSession();
 
   if (session === null) redirect("/signin");
@@ -22,11 +23,11 @@ export default function Dashboard() {
       .then((res) => {
         const hasProfile = res.data;
         setUserWorkoutProfile(hasProfile);
-        console.log(res.data);
       })
 
       .catch((err) => {
         console.log("this " + err);
+        setDataError("Error loading your data");
       });
   }, []);
 
@@ -39,7 +40,8 @@ export default function Dashboard() {
     }
   };
   return (
-    <div className="flex flex-col justify-between h-96 items-center">
+    <div className="py-6 flex flex-col justify-between h-full items-center">
+      <h1 className="text-4xl">Your Dashboard</h1>
       <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
         <div>
           Name: <span className="font-bold">{session?.user?.name}</span>
@@ -55,7 +57,7 @@ export default function Dashboard() {
         </button>
       </div>
       {userWorkoutProfile === null ? (
-        <p>Loading...</p>
+        <p className="text-2xl text-center font-bold">Loading...</p>
       ) : !userWorkoutProfile.user ? (
         <Link href="/newuser">
           <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
@@ -64,76 +66,83 @@ export default function Dashboard() {
         </Link>
       ) : (
         <div className="w-5/6 flex flex-col justify-center items-center gap-8">
-          <h2 className="text-2xl text-center">Your Data</h2>
+          <h2 className="text-2xl text-center font-bold">Your Data</h2>
+          {dataError ? (
+            <h4 className="text-amber-600 font-bold">{dataError}</h4>
+          ) : (
+            ""
+          )}
           <div className="text-l w-5/6 flex flex-col gap-2">
             <div className="flex justify-between">
-              <h4 className="text-amber-600">Age:</h4>
+              <h4 className="text-amber-600 font-bold">Age:</h4>
               <h4>{userWorkoutProfile.age}</h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Height:</h4>
+              <h4 className="text-amber-600 font-bold">Height:</h4>
               <h4>
                 {userWorkoutProfile.height} {userWorkoutProfile.heightUnits}
               </h4>
             </div>
             <div className="flex justify-between">
-              <h4 className="text-amber-600">Weight:</h4>
+              <h4 className="text-amber-600 font-bold">Weight:</h4>
               <h4>
                 {userWorkoutProfile.weight} {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex justify-between">
-              <h4 className="text-amber-600">Goals:</h4>
+              <h4 className="text-amber-600 font-bold">Goals:</h4>
               <h4>{userWorkoutProfile.goals}</h4>
             </div>
             <div className="flex justify-between">
-              <h4 className="text-amber-600">Experience:</h4>
+              <h4 className="text-amber-600 font-bold">Experience:</h4>
               <h4>{userWorkoutProfile.experience}</h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Current Squat Max:</h4>
+              <h4 className="text-amber-600 font-bold">Current Squat Max:</h4>
               <h4>
                 {userWorkoutProfile.currSquatMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Current Bench Max:</h4>
+              <h4 className="text-amber-600 font-bold">Current Bench Max:</h4>
               <h4>
                 {userWorkoutProfile.currBenchMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Current Deadlift Max:</h4>
+              <h4 className="text-amber-600 font-bold">
+                Current Deadlift Max:
+              </h4>
               <h4>
                 {userWorkoutProfile.currDeadliftMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Goal Squat Max:</h4>
+              <h4 className="text-amber-600 font-bold">Goal Squat Max:</h4>
               <h4>
                 {userWorkoutProfile.goalSquatMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Goal Bench Max:</h4>
+              <h4 className="text-amber-600 font-bold">Goal Bench Max:</h4>
               <h4>
                 {userWorkoutProfile.goalBenchMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Goal Deadlift Max:</h4>
+              <h4 className="text-amber-600 font-bold">Goal Deadlift Max:</h4>
               <h4>
                 {userWorkoutProfile.goalDeadliftMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
             <div className="flex  justify-between">
-              <h4 className="text-amber-600">Specialization:</h4>
+              <h4 className="text-amber-600 font-bold">Specialization:</h4>
               <h4>{userWorkoutProfile.specialization}</h4>
             </div>
           </div>
