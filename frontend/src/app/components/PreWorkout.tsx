@@ -1,6 +1,12 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 export default function PreWorkout() {
+  const [mood, setMood] = useState(2);
+
+  const handleMoodChange = (e: any) => {
+    setMood(e.target.value);
+  };
   return (
     <div className="py-6 flex flex-col items-center w-full">
       <h1 className="font-bold text-xl italic">
@@ -15,11 +21,12 @@ export default function PreWorkout() {
             type="range"
             min={0}
             max={5}
-            step={0.5}
-            value={2.5}
+            step={1}
+            value={mood}
             id="mood"
             list="markers"
             name="mood"
+            onChange={handleMoodChange}
             className=" h-4 w-72 rounded bg-gray-700 outline-none focus:ring-4 focus:ring-
           purple-300 focus:border-purple-300 shadow-md"
           />
@@ -34,7 +41,7 @@ export default function PreWorkout() {
             <option label="Very good" value="4"></option>
             <option label="Excellent" value="5"></option>
           </datalist>
-          <p>Value :</p>
+          <p>Value : {mood}</p>
         </div>
       </div>
     </div>
