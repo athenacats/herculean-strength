@@ -1,12 +1,25 @@
 "use client";
 import React, { useState } from "react";
+import { moodOptions } from "../types/preWorkoutTypes";
 
 export default function PreWorkout() {
   const [mood, setMood] = useState(2);
+  const [label, setLabel] = useState("Okay");
 
   const handleMoodChange = (e: any) => {
-    setMood(e.target.value);
+    //console.log(e.target.value, e.target.label);
+    const selectedValue = parseInt(e.target.value, 10);
+    setMood(selectedValue);
+    const selectedLabel = moodOptions.find(
+      (option) => option.value === selectedValue
+    )?.label!;
+    setLabel(selectedLabel);
   };
+
+  /*const selectedMoodLabel = moodOptions.find(
+    (option) => option.value === mood
+  )?.label;*/
+
   return (
     <div className="py-6 flex flex-col items-center w-full">
       <h1 className="font-bold text-xl italic">
@@ -34,14 +47,15 @@ export default function PreWorkout() {
             id="markers"
             className=" flex relative text-sm justify-between"
           >
-            <option label="Very bad" value="0"></option>
-            <option label="Bad" value="1"></option>
-            <option label="Okay" value="2"></option>
-            <option label="Good" value="3"></option>
-            <option label="Very good" value="4"></option>
-            <option label="Excellent" value="5"></option>
+            {moodOptions.map((option) => (
+              <option
+                key={option.value}
+                label={option.label}
+                value={option.value}
+              />
+            ))}
           </datalist>
-          <p>Value : {mood}</p>
+          <p>Value : {label}</p>
         </div>
       </div>
     </div>
