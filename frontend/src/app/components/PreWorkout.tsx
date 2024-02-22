@@ -1,20 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import { energyOptions, moodOptions } from "../types/preWorkoutTypes";
+import {
+  energyOptions,
+  nutritionOptions,
+  readinessOptions,
+} from "../types/preWorkoutTypes";
 
 export default function PreWorkout() {
-  const [mood, setMood] = useState(2);
-  const [moodLabel, setMoodLabel] = useState("Okay");
+  const [nutrition, setNutrition] = useState(2);
+  const [nutritionLabel, setNutritionLabel] = useState("Okay");
   const [energy, setEnergy] = useState(2);
   const [energyLabel, setEnergyLabel] = useState("Okay");
+  const [readiness, setReadiness] = useState(2);
+  const [readinessLabel, setReadinessLabel] = useState("Okay");
 
-  const handleMoodChange = (e: any) => {
+  const handleNutritionChange = (e: any) => {
     const selectedValue = parseInt(e.target.value, 10);
-    setMood(selectedValue);
-    const selectedLabel = moodOptions.find(
+    setNutrition(selectedValue);
+    const selectedLabel = nutritionOptions.find(
       (option) => option.value === selectedValue
     )?.label!;
-    setMoodLabel(selectedLabel);
+    setNutritionLabel(selectedLabel);
   };
 
   const handleEnergyChange = (e: any) => {
@@ -26,6 +32,15 @@ export default function PreWorkout() {
     setEnergyLabel(selectedLabel);
   };
 
+  const handleReadinessChange = (e: any) => {
+    const selectedValue = parseInt(e.target.value, 10);
+    setReadiness(selectedValue);
+    const selectedLabel = readinessOptions.find(
+      (option) => option.value === selectedValue
+    )?.label!;
+    setReadinessLabel(selectedLabel);
+  };
+
   return (
     <>
       <div className="py-6 flex flex-col items-center w-full">
@@ -35,18 +50,18 @@ export default function PreWorkout() {
         <div className=" flex flex-col items-center">
           <div className="">
             <label className="text-center text-lg font-semibold mb-2 block">
-              Mood:
+              Nutrition:
             </label>
             <input
               type="range"
               min={0}
               max={5}
               step={1}
-              value={mood}
-              id="mood"
+              value={nutrition}
+              id="nutrition"
               list="markers"
-              name="mood"
-              onChange={handleMoodChange}
+              name="nutrition"
+              onChange={handleNutritionChange}
               className=" h-4 w-72 rounded bg-gray-700 outline-none focus:ring-4 focus:ring-
           purple-300 focus:border-purple-300 shadow-md"
             />
@@ -54,7 +69,7 @@ export default function PreWorkout() {
               id="markers"
               className=" flex relative text-sm justify-between"
             >
-              {moodOptions.map((option) => (
+              {nutritionOptions.map((option) => (
                 <option
                   key={option.value}
                   label={option.label}
@@ -62,7 +77,7 @@ export default function PreWorkout() {
                 />
               ))}
             </datalist>
-            <p>Value : {moodLabel}</p>
+            <p>Value : {nutritionLabel}</p>
           </div>
         </div>
         <div className=" flex flex-col items-center">
@@ -96,6 +111,39 @@ export default function PreWorkout() {
               ))}
             </datalist>
             <p>Value : {energyLabel}</p>
+          </div>
+        </div>
+        <div className=" flex flex-col items-center">
+          <div className="">
+            <label className="text-center text-lg font-semibold mb-2 block">
+              Readiness Levels:
+            </label>
+            <input
+              type="range"
+              min={0}
+              max={5}
+              step={1}
+              value={readiness}
+              id="readiness"
+              list="markers"
+              name="readiness"
+              onChange={handleReadinessChange}
+              className=" h-4 w-72 rounded bg-gray-700 outline-none focus:ring-4 focus:ring-
+          purple-300 focus:border-purple-300 shadow-md"
+            />
+            <datalist
+              id="markers"
+              className=" flex relative text-sm justify-between"
+            >
+              {readinessOptions.map((option) => (
+                <option
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                />
+              ))}
+            </datalist>
+            <p>Value : {readinessLabel}</p>
           </div>
         </div>
       </div>
