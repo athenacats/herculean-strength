@@ -5,6 +5,7 @@ import {
   nutritionOptions,
   readinessOptions,
 } from "../types/preWorkoutTypes";
+import { useRouter } from "next/navigation";
 
 export default function PreWorkout() {
   const [nutrition, setNutrition] = useState(2);
@@ -13,6 +14,7 @@ export default function PreWorkout() {
   const [energyLabel, setEnergyLabel] = useState("Okay");
   const [readiness, setReadiness] = useState(2);
   const [readinessLabel, setReadinessLabel] = useState("Okay");
+  const router = useRouter();
 
   const handleNutritionChange = (e: any) => {
     const selectedValue = parseInt(e.target.value, 10);
@@ -39,6 +41,16 @@ export default function PreWorkout() {
       (option) => option.value === selectedValue
     )?.label!;
     setReadinessLabel(selectedLabel);
+  };
+
+  const handleSubmit = () => {
+    const preWorkoutData = {
+      nutrition,
+      energy,
+      readiness,
+    };
+    localStorage.setItem("preWorkoutData", JSON.stringify(preWorkoutData));
+    router.replace("start-workout");
   };
 
   return (
@@ -145,6 +157,14 @@ export default function PreWorkout() {
             </datalist>
             <p>Value : {readinessLabel}</p>
           </div>
+        </div>
+        <div>
+          <button
+            className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+            onClick={handleSubmit}
+          >
+            Take Me To Today&apos;s Workout
+          </button>
         </div>
       </div>
     </>
