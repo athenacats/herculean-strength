@@ -20,26 +20,27 @@ export default function SignUp() {
 
   const userSignUp = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    const user = axios.post("api/userExists", {
-      email: userEmail,
-    });
-
-    if (await user) {
-      setError("User already exists");
-      return;
-    }
-    axios
-      .post("api/register", {
-        name: userName,
+    try {
+      const userResponse = await axios.post("api/userExists", {
         email: userEmail,
-        password: userPassword,
-      })
-      .then(() => router.push("/"))
-      /*dispatch({ type: "USER_SIGNIN", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      router.push("/");*/
-      .catch((err) => console.log(err));
+      });
+
+      const user = userResponse.data.user;
+      console.log(user);
+      if (user) {
+        setError("User already exists");
+        return;
+      }
+      axios
+        .post("api/register", {
+          name: userName,
+          email: userEmail,
+          password: userPassword,
+        })
+        .then(() => router.push("/"));
+    } catch (error) {
+      console.log("Error during user sign up:", error);
+    }
   };
 
   const emailRegex = /\S+@\S+\.\S+/;
