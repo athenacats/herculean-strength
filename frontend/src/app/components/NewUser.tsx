@@ -34,14 +34,18 @@ export default function NewUser() {
   const router = useRouter();
 
   const handleInput = (e: any) => {
-    const { name, value }: { name: string; value: string } = e.target;
-    console.log("name:", name);
-    console.log("value:", value);
-
-    setFormData({
-      ...formData,
-      [name]: String(value),
-    });
+    const { name, value, type } = e.target;
+    if (type === "radio") {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: String(value),
+      });
+    }
 
     setCurrName(name);
     setFilled(value);
@@ -178,6 +182,7 @@ export default function NewUser() {
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
+              defaultChecked
             />
             cm
             <input
