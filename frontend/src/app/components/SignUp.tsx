@@ -37,7 +37,7 @@ export default function SignUp() {
           email: userEmail,
           password: userPassword,
         })
-        .then(() => router.push("/"));
+        .then(() => router.push("/signin"));
     } catch (error) {
       console.log("Error during user sign up:", error);
     }
