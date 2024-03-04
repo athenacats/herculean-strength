@@ -24,6 +24,7 @@ export default function NewUser() {
     goalDeadliftMax: "",
     specialization: "",
     notifications: "",
+    dots: "",
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -33,12 +34,14 @@ export default function NewUser() {
   const router = useRouter();
 
   const handleInput = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value }: { name: string; value: string } = e.target;
+    console.log("name:", name);
+    console.log("value:", value);
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({
+      ...formData,
+      [name]: String(value),
+    });
 
     setCurrName(name);
     setFilled(value);
@@ -66,7 +69,31 @@ export default function NewUser() {
     setCurrName("");
   };
 
+  const dotsformula = () => {
+    let bw = parseInt(formData.weight);
+    let A, B, C, D, E;
+    A = B = C = D = E = 0;
+    if (formData.sex === "Female") {
+      A = -0.0000010706;
+      B = 0.0005158568;
+      C = -0.1126655495;
+      D = 13.6175032;
+      E = -57.96288;
+    } else {
+      A = 0.000001093;
+      B = 0.0007391293;
+      C = 0.1918759221;
+      D = 24.0900756;
+      E = 307.75076;
+    }
+    return (formData.dots = (
+      500 /
+      (((A * bw) ^ 4) + ((B * bw) ^ 3) + ((C * bw) ^ 2) + D * bw + E)
+    ).toString());
+  };
+
   const submitForm = (e: React.SyntheticEvent) => {
+    dotsformula();
     e.preventDefault();
 
     axios
@@ -80,6 +107,7 @@ export default function NewUser() {
   };
 
   const handleNext = () => {
+    console.log(formData);
     if (filled === "") {
       setCurrError("Please select a value");
     } else {
@@ -410,13 +438,15 @@ export default function NewUser() {
               value={formData.goalSquatMax}
               onChange={handleInput}
               placeholder="Goal Squat Max"
-              onBlur={() =>
-                formData.goalSquatMax >= formData.currSquatMax
+              onBlur={() => {
+                console.log("Current Squat Max:", formData.currSquatMax);
+                console.log("Goal Squat Max:", formData.goalSquatMax);
+                Number(formData.goalSquatMax) >= Number(formData.currSquatMax)
                   ? setCurrError("")
                   : setCurrError(
                       "Squat goal must be equal or more than current maxes"
-                    )
-              }
+                    );
+              }}
               required
             ></input>
             {formData.weightUnits}
