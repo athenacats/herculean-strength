@@ -36,11 +36,13 @@ export default function NewUser() {
   const handleInput = (e: any) => {
     const { name, value, type } = e.target;
     if (type === "radio") {
+      console.log("radio ", formData);
       setFormData({
         ...formData,
         [name]: value,
       });
     } else {
+      console.log("not ", formData);
       setFormData({
         ...formData,
         [name]: String(value),
@@ -182,7 +184,6 @@ export default function NewUser() {
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
-              defaultChecked
             />
             cm
             <input
