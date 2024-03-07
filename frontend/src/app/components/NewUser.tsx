@@ -77,6 +77,11 @@ export default function NewUser() {
 
   const dotsformula = () => {
     let bw = parseInt(formData.weight);
+    let result =
+      Number(formData.currBenchMax) +
+      Number(formData.currDeadliftMax) +
+      Number(formData.currSquatMax);
+    console.log(bw);
     let A, B, C, D, E;
     A = B = C = D = E = 0;
     if (formData.sex === "Female") {
@@ -92,23 +97,26 @@ export default function NewUser() {
       D = 24.0900756;
       E = 307.75076;
     }
-    return (formData.dots = (
-      500 /
-      (((A * bw) ^ 4) + ((B * bw) ^ 3) + ((C * bw) ^ 2) + D * bw + E)
-    ).toString());
+    const dotsValue =
+      (result * 500) / (A * bw ** 4 + B * bw ** 3 + C * bw ** 2 + D * bw + E);
+    console.log(dotsValue);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      dots: dotsValue.toString(),
+    }));
   };
 
   const submitForm = (e: React.SyntheticEvent) => {
-    dotsformula();
     e.preventDefault();
-
+    dotsformula();
     axios
       .post("api/workoutProfile", {
         userName: session?.user?.name,
         userEmail: session?.user?.email,
         formData: formData,
       })
-      .then(() => router.replace(""))
+      .then(() => router.replace("/"))
       .catch((err) => console.log(err));
   };
 
