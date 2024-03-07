@@ -77,10 +77,20 @@ export default function NewUser() {
 
   const dotsformula = () => {
     let bw = parseInt(formData.weight);
-    let result =
-      Number(formData.currBenchMax) +
-      Number(formData.currDeadliftMax) +
-      Number(formData.currSquatMax);
+    let result: number;
+    if (formData.weightUnits === "kg") {
+      result =
+        Number(formData.currBenchMax) +
+        Number(formData.currDeadliftMax) +
+        Number(formData.currSquatMax);
+    } else {
+      result =
+        (Number(formData.currBenchMax) +
+          Number(formData.currDeadliftMax) +
+          Number(formData.currSquatMax)) *
+        2.2;
+    }
+
     console.log(bw);
     let A, B, C, D, E;
     A = B = C = D = E = 0;
