@@ -300,7 +300,7 @@ export default function NewUser() {
             <input
               type="radio"
               name="goals"
-              value="Bodybulding"
+              value="Bodybuilding"
               onChange={handleInput}
               className={`text-xl text-center hover:cursor-pointer`}
               required
