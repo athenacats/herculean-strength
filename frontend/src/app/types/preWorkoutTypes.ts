@@ -13,6 +13,8 @@ export type ReadinessOption = {
   value: number;
 };
 
+export type preworkoutData = number;
+
 export const nutritionOptions: NutritionOption[] = [
   { label: "Very bad", value: 0 },
   { label: "Bad", value: 1 },

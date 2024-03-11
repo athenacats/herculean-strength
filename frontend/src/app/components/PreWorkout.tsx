@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {
   energyOptions,
   nutritionOptions,
+  preworkoutData,
   readinessOptions,
 } from "../types/preWorkoutTypes";
 import { useRouter } from "next/navigation";
@@ -18,6 +19,7 @@ export default function PreWorkout() {
 
   const handleNutritionChange = (e: any) => {
     const selectedValue = parseInt(e.target.value, 10);
+
     setNutrition(selectedValue);
     const selectedLabel = nutritionOptions.find(
       (option) => option.value === selectedValue
@@ -44,12 +46,14 @@ export default function PreWorkout() {
   };
 
   const handleSubmit = () => {
-    const preWorkoutData = {
+    const data: preworkoutData = (nutrition + energy + readiness) / 3;
+    console.log(data);
+    /*const preWorkoutData = {
       nutrition,
       energy,
       readiness,
-    };
-    localStorage.setItem("preWorkoutData", JSON.stringify(preWorkoutData));
+    };*/
+    localStorage.setItem("preWorkoutData", JSON.stringify(data));
     router.replace("start-workout");
   };
 
