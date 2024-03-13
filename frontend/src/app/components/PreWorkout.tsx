@@ -9,6 +9,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
+import { determineWorkout } from "../workoutLogic";
 
 export default function PreWorkout() {
   const [nutrition, setNutrition] = useState(2);
@@ -71,14 +72,15 @@ export default function PreWorkout() {
       workoutProfile: userWorkoutProfile,
     };
 
-    console.log(data);
+    console.log("preworkout", data);
+    determineWorkout(data);
     /*const preWorkoutData = {
       nutrition,
       energy,
       readiness,
     };*/
-    localStorage.setItem("preWorkoutData", JSON.stringify(data));
-    router.replace("start-workout");
+    //localStorage.setItem("preWorkoutData", JSON.stringify(data));
+    //router.replace("start-workout");
   };
 
   return (
