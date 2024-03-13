@@ -1,3 +1,5 @@
+import { UserWorkoutProfileInfo } from "./UserWorkoutProfileInfo";
+
 export type NutritionOption = {
   label: string;
   value: number;
@@ -13,7 +15,10 @@ export type ReadinessOption = {
   value: number;
 };
 
-export type preworkoutData = number;
+export type preworkoutData = {
+  value: number;
+  workoutProfile: UserWorkoutProfileInfo | null;
+};
 
 export const nutritionOptions: NutritionOption[] = [
   { label: "Very bad", value: 0 },

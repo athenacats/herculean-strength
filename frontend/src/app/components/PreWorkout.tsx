@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   energyOptions,
   nutritionOptions,
@@ -7,6 +7,8 @@ import {
   readinessOptions,
 } from "../types/preWorkoutTypes";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 
 export default function PreWorkout() {
   const [nutrition, setNutrition] = useState(2);
@@ -16,6 +18,8 @@ export default function PreWorkout() {
   const [readiness, setReadiness] = useState(2);
   const [readinessLabel, setReadinessLabel] = useState("Okay");
   const router = useRouter();
+  const [userWorkoutProfile, setUserWorkoutProfile] =
+    useState<UserWorkoutProfileInfo | null>(null);
 
   const handleNutritionChange = (e: any) => {
     const selectedValue = parseInt(e.target.value, 10);
@@ -45,8 +49,28 @@ export default function PreWorkout() {
     setReadinessLabel(selectedLabel);
   };
 
+  useEffect(() => {
+    // Checking if the user has a workout profile. If not, it will display a message asking them to create one.
+    axios
+      .get("api/checkWorkoutProfile")
+      .then((res) => {
+        const hasProfile = res.data;
+        setUserWorkoutProfile(hasProfile);
+      })
+
+      .catch((err) => {
+        console.log("this " + err);
+        router.push("/");
+      });
+  }, []);
+
   const handleSubmit = () => {
-    const data: preworkoutData = (nutrition + energy + readiness) / 3;
+    const value = (nutrition + energy + readiness) / 3;
+    const data: preworkoutData = {
+      value,
+      workoutProfile: userWorkoutProfile,
+    };
+
     console.log(data);
     /*const preWorkoutData = {
       nutrition,
