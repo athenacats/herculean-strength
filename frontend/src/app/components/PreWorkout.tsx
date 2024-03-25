@@ -18,6 +18,7 @@ export default function PreWorkout() {
   const [energyLabel, setEnergyLabel] = useState("Okay");
   const [readiness, setReadiness] = useState(2);
   const [readinessLabel, setReadinessLabel] = useState("Okay");
+  const [workoutType, setWorkoutType] = useState(null);
   const router = useRouter();
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
@@ -51,12 +52,9 @@ export default function PreWorkout() {
   };
 
   const handleWorkoutType = (e: any) => {
-    const selectedValue = parseInt(e.target.value, 10);
-    setReadiness(selectedValue);
-    const selectedLabel = readinessOptions.find(
-      (option) => option.value === selectedValue
-    )?.label!;
-    setReadinessLabel(selectedLabel);
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+    setWorkoutType(selectedValue);
   };
 
   useEffect(() => {
@@ -79,6 +77,7 @@ export default function PreWorkout() {
     const data: preworkoutData = {
       value,
       workoutProfile: userWorkoutProfile,
+      workoutTypeToday: workoutType,
     };
 
     console.log("preworkout", data);

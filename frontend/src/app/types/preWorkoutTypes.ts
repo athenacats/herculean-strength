@@ -18,6 +18,7 @@ export type ReadinessOption = {
 export type preworkoutData = {
   value: number;
   workoutProfile: UserWorkoutProfileInfo | null;
+  workoutTypeToday: string | null;
 };
 
 export const nutritionOptions: NutritionOption[] = [
