@@ -50,6 +50,15 @@ export default function PreWorkout() {
     setReadinessLabel(selectedLabel);
   };
 
+  const handleWorkoutType = (e: any) => {
+    const selectedValue = parseInt(e.target.value, 10);
+    setReadiness(selectedValue);
+    const selectedLabel = readinessOptions.find(
+      (option) => option.value === selectedValue
+    )?.label!;
+    setReadinessLabel(selectedLabel);
+  };
+
   useEffect(() => {
     // Checking if the user has a workout profile. If not, it will display a message asking them to create one.
     axios
@@ -187,6 +196,44 @@ export default function PreWorkout() {
             </datalist>
             <p>Value : {readinessLabel}</p>
           </div>
+        </div>
+        <div className=" flex gap-4 w-5/6 justify-center content-center items-center pt-6 pb-6">
+          <label className="text-center text-lg font-semibold  block">
+            Would you like to Squat, Bench or Deadlift?
+          </label>
+          <input
+            type="radio"
+            name="workoutType"
+            value="Squat"
+            onChange={handleWorkoutType}
+            className={`text-xl text-center hover:cursor-pointer`}
+            required
+          />
+          <p>
+            <strong className="font-bold ">Squat</strong>{" "}
+          </p>
+          <input
+            type="radio"
+            name="workoutType"
+            value="Bench"
+            onChange={handleWorkoutType}
+            className={`text-xl text-center hover:cursor-pointer`}
+            required
+          />
+          <p>
+            <strong className="font-bold">Bench</strong>{" "}
+          </p>
+          <input
+            type="radio"
+            name="workoutType"
+            value="Deadlift"
+            onChange={handleWorkoutType}
+            className={`text-xl text-center hover:cursor-pointer`}
+            required
+          />
+          <p>
+            <strong className="font-bold">Deadlift</strong>{" "}
+          </p>
         </div>
         <div>
           <button
