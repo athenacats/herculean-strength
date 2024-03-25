@@ -100,6 +100,145 @@ export const determineWorkout = (data: preworkoutData) => {
 
       return workout;
     } else if (data.value >= 2 && data.value < 4) {
+      const workout: Workout = {
+        exercises: [
+          {
+            name: squatVariation[0].name,
+            sets: [
+              { reps: 5, weight: data.workoutProfile.currSquatMax * 0.35 },
+              { reps: 3, weight: data.workoutProfile.currSquatMax * 0.4 },
+              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.45 },
+              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.55 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
+            ],
+          },
+          {
+            name: accessory1.name,
+            sets: [
+              {
+                reps: 12,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 12,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 12,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+            ],
+          },
+          {
+            name: accessory2.name,
+            sets: [
+              {
+                reps: 12,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 12,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 12,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+            ],
+          },
+          {
+            name: abAccessory.name,
+            sets: [
+              {
+                reps: 12,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+              {
+                reps: 12,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+              {
+                reps: 12,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+            ],
+          },
+        ],
+      };
+
+      return workout;
+    } else {
+      const workout: Workout = {
+        exercises: [
+          {
+            name: squatVariation[0].name,
+            sets: [
+              { reps: 5, weight: data.workoutProfile.currSquatMax * 0.35 },
+              { reps: 3, weight: data.workoutProfile.currSquatMax * 0.4 },
+              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.5 },
+              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.65 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
+              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
+            ],
+          },
+          {
+            name: accessory1.name,
+            sets: [
+              {
+                reps: 15,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 15,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 15,
+                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+              },
+            ],
+          },
+          {
+            name: accessory2.name,
+            sets: [
+              {
+                reps: 15,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 15,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+              {
+                reps: 15,
+                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+              },
+            ],
+          },
+          {
+            name: abAccessory.name,
+            sets: [
+              {
+                reps: 15,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+              {
+                reps: 15,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+              {
+                reps: 15,
+                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+              },
+            ],
+          },
+        ],
+      };
+
+      return workout;
     }
   }
 };
