@@ -26,26 +26,27 @@ export const determineWorkout = (data: preworkoutData) => {
   let variation: { name: any }[] = [];
   let max: number = 0;
 
+  switch (data.workoutTypeToday?.toLowerCase()) {
+    case "squat":
+      accessories = squatAccessories;
+      variation = squatVariation;
+      max = data.workoutProfile!.currSquatMax;
+      break;
+    case "bench":
+      accessories = benchAccessories;
+      variation = benchVariation;
+      max = data.workoutProfile!.currBenchMax;
+      break;
+    case "deadlift":
+      accessories = deadliftAccessories;
+      variation = deadliftVariation;
+      max = data.workoutProfile!.currDeadliftMax;
+      break;
+    default:
+      break;
+  }
+
   if (data.workoutProfile?.goals === "Bodybuilding") {
-    switch (data.workoutTypeToday?.toLowerCase()) {
-      case "squat":
-        accessories = squatAccessories;
-        variation = squatVariation;
-        max = data.workoutProfile.currSquatMax;
-        break;
-      case "bench":
-        accessories = benchAccessories;
-        variation = benchVariation;
-        max = data.workoutProfile.currBenchMax;
-        break;
-      case "deadlift":
-        accessories = deadliftAccessories;
-        variation = deadliftVariation;
-        max = data.workoutProfile.currDeadliftMax;
-        break;
-      default:
-        break;
-    }
     const accessory1 =
       accessories[Math.floor(Math.random() * accessories.length)];
     const remainingAccessories = accessories.filter(
