@@ -197,42 +197,75 @@ export default function PreWorkout() {
           </div>
         </div>
         <div className=" flex gap-4 w-5/6 justify-center content-center items-center pt-6 pb-6">
-          <label className="text-center text-lg font-semibold  block">
-            Would you like to Squat, Bench or Deadlift?
-          </label>
-          <input
-            type="radio"
-            name="workoutType"
-            value="Squat"
-            onChange={handleWorkoutType}
-            className={`text-xl text-center hover:cursor-pointer`}
-            required
-          />
-          <p>
-            <strong className="font-bold ">Squat</strong>{" "}
-          </p>
-          <input
-            type="radio"
-            name="workoutType"
-            value="Bench"
-            onChange={handleWorkoutType}
-            className={`text-xl text-center hover:cursor-pointer`}
-            required
-          />
-          <p>
-            <strong className="font-bold">Bench</strong>{" "}
-          </p>
-          <input
-            type="radio"
-            name="workoutType"
-            value="Deadlift"
-            onChange={handleWorkoutType}
-            className={`text-xl text-center hover:cursor-pointer`}
-            required
-          />
-          <p>
-            <strong className="font-bold">Deadlift</strong>{" "}
-          </p>
+          {userWorkoutProfile?.goals === "Bodybuilding" ? (
+            <>
+              {" "}
+              <label className="text-center text-lg font-semibold  block">
+                Would you like to Squat, Bench or Deadlift?
+              </label>{" "}
+              <input
+                type="radio"
+                name="workoutType"
+                value="Squat"
+                onChange={handleWorkoutType}
+                className={`text-xl text-center hover:cursor-pointer`}
+                required
+              />
+              <p>
+                <strong className="font-bold ">Squat</strong>{" "}
+              </p>
+              <input
+                type="radio"
+                name="workoutType"
+                value="Bench"
+                onChange={handleWorkoutType}
+                className={`text-xl text-center hover:cursor-pointer`}
+                required
+              />
+              <p>
+                <strong className="font-bold">Bench</strong>{" "}
+              </p>
+              <input
+                type="radio"
+                name="workoutType"
+                value="Deadlift"
+                onChange={handleWorkoutType}
+                className={`text-xl text-center hover:cursor-pointer`}
+                required
+              />
+              <p>
+                <strong className="font-bold">Deadlift</strong>{" "}
+              </p>{" "}
+            </>
+          ) : (
+            <>
+              <label className="text-center text-lg font-semibold  block">
+                Would you like to Squat or Deadlift?
+              </label>
+              <input
+                type="radio"
+                name="workoutType"
+                value="Squat"
+                onChange={handleWorkoutType}
+                className={`text-xl text-center hover:cursor-pointer`}
+                required
+              />
+              <p>
+                <strong className="font-bold ">Squat</strong>{" "}
+              </p>
+              <input
+                type="radio"
+                name="workoutType"
+                value="Deadlift"
+                onChange={handleWorkoutType}
+                className={`text-xl text-center hover:cursor-pointer`}
+                required
+              />
+              <p>
+                <strong className="font-bold">Deadlift</strong>{" "}
+              </p>{" "}
+            </>
+          )}
         </div>
         <div>
           <button
