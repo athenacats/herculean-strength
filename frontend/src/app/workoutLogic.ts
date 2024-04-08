@@ -1,5 +1,9 @@
 import {
   abdominals,
+  benchAccessories,
+  benchVariation,
+  deadliftAccessories,
+  deadliftVariation,
   squatAccessories,
   squatVariation,
 } from "./types/Variations";
@@ -18,30 +22,52 @@ export const determineWorkout = (data: preworkoutData) => {
   type Workout = {
     exercises: Array<Exercise>;
   };
+  let accessories: any[] = [];
+  let variation: { name: any }[] = [];
+  let max: number = 0;
 
   if (data.workoutProfile?.goals === "Bodybuilding") {
+    switch (data.workoutTypeToday?.toLowerCase()) {
+      case "squat":
+        accessories = squatAccessories;
+        variation = squatVariation;
+        max = data.workoutProfile.currSquatMax;
+        break;
+      case "bench":
+        accessories = benchAccessories;
+        variation = benchVariation;
+        max = data.workoutProfile.currBenchMax;
+        break;
+      case "deadlift":
+        accessories = deadliftAccessories;
+        variation = deadliftVariation;
+        max = data.workoutProfile.currDeadliftMax;
+        break;
+      default:
+        break;
+    }
     const accessory1 =
-      squatAccessories[Math.floor(Math.random() * squatAccessories.length)];
-    const remainingAccessories = squatAccessories.filter(
+      accessories[Math.floor(Math.random() * accessories.length)];
+    const remainingAccessories = accessories.filter(
       (accessory) => accessory.name !== accessory1.name
     );
     const accessory2 =
-      squatAccessories[Math.floor(Math.random() * remainingAccessories.length)];
+      accessories[Math.floor(Math.random() * remainingAccessories.length)];
     const abAccessory =
       abdominals[Math.floor(Math.random() * abdominals.length)];
     if (data.value >= 0 && data.value < 2) {
       const workout: Workout = {
         exercises: [
           {
-            name: squatVariation[0].name,
+            name: variation[0].name,
             sets: [
-              { reps: 5, weight: data.workoutProfile.currSquatMax * 0.3 },
-              { reps: 3, weight: data.workoutProfile.currSquatMax * 0.35 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.4 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.45 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.55 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.55 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.55 },
+              { reps: 5, weight: max * 0.3 },
+              { reps: 3, weight: max * 0.35 },
+              { reps: 1, weight: max * 0.4 },
+              { reps: 1, weight: max * 0.45 },
+              { reps: 10, weight: max * 0.55 },
+              { reps: 10, weight: max * 0.55 },
+              { reps: 10, weight: max * 0.55 },
             ],
           },
           {
@@ -49,15 +75,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 8,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 8,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
             ],
           },
@@ -66,15 +92,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 8,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 8,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
             ],
           },
@@ -103,15 +129,15 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
-            name: squatVariation[0].name,
+            name: variation[0].name,
             sets: [
-              { reps: 5, weight: data.workoutProfile.currSquatMax * 0.35 },
-              { reps: 3, weight: data.workoutProfile.currSquatMax * 0.4 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.45 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.55 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.65 },
+              { reps: 5, weight: max * 0.35 },
+              { reps: 3, weight: max * 0.4 },
+              { reps: 1, weight: max * 0.45 },
+              { reps: 1, weight: max * 0.55 },
+              { reps: 10, weight: max * 0.65 },
+              { reps: 10, weight: max * 0.65 },
+              { reps: 10, weight: max * 0.65 },
             ],
           },
           {
@@ -119,15 +145,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 12,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 12,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 12,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
             ],
           },
@@ -136,15 +162,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 12,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 12,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 12,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
             ],
           },
@@ -173,15 +199,15 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
-            name: squatVariation[0].name,
+            name: variation[0].name,
             sets: [
-              { reps: 5, weight: data.workoutProfile.currSquatMax * 0.35 },
-              { reps: 3, weight: data.workoutProfile.currSquatMax * 0.4 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.5 },
-              { reps: 1, weight: data.workoutProfile.currSquatMax * 0.65 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
-              { reps: 10, weight: data.workoutProfile.currSquatMax * 0.75 },
+              { reps: 5, weight: max * 0.35 },
+              { reps: 3, weight: max * 0.4 },
+              { reps: 1, weight: max * 0.5 },
+              { reps: 1, weight: max * 0.65 },
+              { reps: 10, weight: max * 0.75 },
+              { reps: 10, weight: max * 0.75 },
+              { reps: 10, weight: max * 0.75 },
             ],
           },
           {
@@ -189,15 +215,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 15,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 15,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
               {
                 reps: 15,
-                weight: accessory1.weight * data.workoutProfile.currSquatMax,
+                weight: accessory1.weight * max,
               },
             ],
           },
@@ -206,15 +232,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 15,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 15,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
               {
                 reps: 15,
-                weight: accessory2.weight * data.workoutProfile.currSquatMax,
+                weight: accessory2.weight * max,
               },
             ],
           },
