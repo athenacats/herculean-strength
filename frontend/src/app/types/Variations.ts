@@ -34,7 +34,7 @@ export const benchVariation: ExcerciseVariation[] = [
 export const deadliftVariation: ExcerciseVariation[] = [
   { name: "Competition Deadlifts", easy: 60, medium: 70, hard: 90 },
   { name: "Deadlifts with Pause at Knees", easy: 60, medium: 70, hard: 80 },
-  { name: "Deadlifts with Chains", easy: 60, medium: 80, hard: 80 },
+  { name: "Deadlifts with Chains", easy: 60, medium: 70, hard: 80 },
   { name: "Defecit Deadlifts", easy: 60, medium: 70, hard: 80 },
   { name: "Rack Pull Deadlifts", easy: 70, medium: 85, hard: 110 },
 ];

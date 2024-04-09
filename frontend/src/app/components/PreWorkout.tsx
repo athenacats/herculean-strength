@@ -81,8 +81,8 @@ export default function PreWorkout() {
     };
 
     console.log("preworkout", data);
-    determineWorkout(data);
-
+    const workout = determineWorkout(data);
+    console.log(workout);
     /*const preWorkoutData = {
       nutrition,
       energy,

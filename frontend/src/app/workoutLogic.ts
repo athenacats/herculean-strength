@@ -126,7 +126,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     } else if (data.value >= 2 && data.value < 4) {
       const workout: Workout = {
@@ -196,7 +195,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     } else {
       const workout: Workout = {
@@ -266,7 +264,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     }
   } else {
@@ -434,7 +431,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     } else if (data.workoutProfile?.goals === "Gain more strength") {
       if (data.value >= 0 && data.value < 2) {
@@ -530,7 +526,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     } else {
       const compVariation1 = variation[0];
@@ -588,7 +583,6 @@ export const determineWorkout = (data: preworkoutData) => {
           },
         ],
       };
-      console.log(workout);
       return workout;
     }
   }
