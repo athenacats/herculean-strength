@@ -1,13 +1,13 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-import { useWorkout } from "../WorkoutProvider";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
 
   useEffect(() => {
-    const storedWorkout = localStorage.getItem("workout");
+    const storedWorkout = sessionStorage.getItem("workout");
     const parsedWorkout = storedWorkout ? JSON.parse(storedWorkout) : null;
     setWorkout(parsedWorkout);
   }, []);
