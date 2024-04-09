@@ -10,10 +10,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 import { determineWorkout } from "../workoutLogic";
-import { useWorkout } from "../WorkoutProvider";
 
 export default function PreWorkout() {
-  const { setWorkout } = useWorkout();
   const [nutrition, setNutrition] = useState(2);
   const [nutritionLabel, setNutritionLabel] = useState("Okay");
   const [energy, setEnergy] = useState(2);
@@ -61,7 +59,6 @@ export default function PreWorkout() {
   };
 
   useEffect(() => {
-    // Checking if the user has a workout profile. If not, it will display a message asking them to create one.
     axios
       .get("api/checkWorkoutProfile")
       .then((res) => {
@@ -89,7 +86,6 @@ export default function PreWorkout() {
 
     console.log("preworkout", data);
     const workout = determineWorkout(data);
-    setWorkout(workout);
     localStorage.setItem("workout", JSON.stringify(workout));
     router.replace("start-workout");
   };
