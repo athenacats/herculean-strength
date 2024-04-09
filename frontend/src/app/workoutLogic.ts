@@ -309,260 +309,131 @@ export const determineWorkout = (data: preworkoutData) => {
       bAccessories[Math.floor(Math.random() * remainingBAccessories.length)];
     const abAccessory =
       abdominals[Math.floor(Math.random() * abdominals.length)];
+    let variation1Difficulty: number;
+    let variation2Difficulty: number;
+
     if (data.value >= 0 && data.value < 2) {
-      const workout: Workout = {
-        exercises: [
-          {
-            name: variation1,
-            sets: [
-              { reps: 6, weight: max * variation1.easy * 0.5 },
-              { reps: 6, weight: max * variation1.easy * 0.7 },
-              { reps: 6, weight: max * variation1.easy * 0.9 },
-              { reps: 6, weight: max * variation1.easy },
-              { reps: 6, weight: max * variation1.easy },
-              { reps: 6, weight: max * variation1.easy },
-            ],
-          },
-          {
-            name: variation2,
-            sets: [
-              { reps: 6, weight: bMax * variation2.easy * 0.5 },
-              { reps: 6, weight: bMax * variation2.easy * 0.7 },
-              { reps: 6, weight: bMax * variation2.easy * 0.9 },
-              { reps: 6, weight: bMax * variation2.easy },
-              { reps: 6, weight: bMax * variation2.easy },
-              { reps: 6, weight: bMax * variation2.easy },
-            ],
-          },
-          {
-            name: accessory1.name,
-            sets: [
-              {
-                reps: 8,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 8,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 8,
-                weight: accessory1.weight * max,
-              },
-            ],
-          },
-          {
-            name: accessory2.name,
-            sets: [
-              {
-                reps: 8,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 8,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 8,
-                weight: accessory2.weight * max,
-              },
-            ],
-          },
-          {
-            name: bAccessory1.name,
-            sets: [
-              {
-                reps: 8,
-                weight: bAccessory1.weight * bMax,
-              },
-              {
-                reps: 8,
-                weight: bAccessory1.weight * bMax,
-              },
-              {
-                reps: 8,
-                weight: bAccessory1.weight * bMax,
-              },
-            ],
-          },
-          {
-            name: bAccessory2.name,
-            sets: [
-              {
-                reps: 8,
-                weight: bAccessory2.weight * bMax,
-              },
-              {
-                reps: 8,
-                weight: bAccessory2.weight * bMax,
-              },
-              {
-                reps: 8,
-                weight: bAccessory2.weight * bMax,
-              },
-            ],
-          },
-          {
-            name: abAccessory.name,
-            sets: [
-              {
-                reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-            ],
-          },
-        ],
-      };
-
-      return workout;
+      variation1Difficulty = variation1.easy;
+      variation2Difficulty = variation2.easy;
     } else if (data.value >= 2 && data.value < 4) {
-      const workout: Workout = {
-        exercises: [
-          {
-            name: variation[0].name,
-            sets: [
-              { reps: 5, weight: max * 0.35 },
-              { reps: 3, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.45 },
-              { reps: 1, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.65 },
-            ],
-          },
-          {
-            name: accessory1.name,
-            sets: [
-              {
-                reps: 12,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 12,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 12,
-                weight: accessory1.weight * max,
-              },
-            ],
-          },
-          {
-            name: accessory2.name,
-            sets: [
-              {
-                reps: 12,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 12,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 12,
-                weight: accessory2.weight * max,
-              },
-            ],
-          },
-          {
-            name: abAccessory.name,
-            sets: [
-              {
-                reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-            ],
-          },
-        ],
-      };
-
-      return workout;
+      variation1Difficulty = variation1.medium;
+      variation2Difficulty = variation2.medium;
     } else {
-      const workout: Workout = {
-        exercises: [
-          {
-            name: variation[0].name,
-            sets: [
-              { reps: 5, weight: max * 0.35 },
-              { reps: 3, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.5 },
-              { reps: 1, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.75 },
-              { reps: 10, weight: max * 0.75 },
-              { reps: 10, weight: max * 0.75 },
-            ],
-          },
-          {
-            name: accessory1.name,
-            sets: [
-              {
-                reps: 15,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 15,
-                weight: accessory1.weight * max,
-              },
-              {
-                reps: 15,
-                weight: accessory1.weight * max,
-              },
-            ],
-          },
-          {
-            name: accessory2.name,
-            sets: [
-              {
-                reps: 15,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 15,
-                weight: accessory2.weight * max,
-              },
-              {
-                reps: 15,
-                weight: accessory2.weight * max,
-              },
-            ],
-          },
-          {
-            name: abAccessory.name,
-            sets: [
-              {
-                reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-              {
-                reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
-              },
-            ],
-          },
-        ],
-      };
-
-      return workout;
+      variation1Difficulty = variation1.hard;
+      variation2Difficulty = variation2.hard;
     }
+    const workout: Workout = {
+      exercises: [
+        {
+          name: variation1,
+          sets: [
+            { reps: 6, weight: max * variation1Difficulty * 0.5 },
+            { reps: 6, weight: max * variation1Difficulty * 0.7 },
+            { reps: 6, weight: max * variation1Difficulty * 0.9 },
+            { reps: 6, weight: max * variation1Difficulty },
+            { reps: 6, weight: max * variation1Difficulty },
+            { reps: 6, weight: max * variation1Difficulty },
+          ],
+        },
+        {
+          name: variation2,
+          sets: [
+            { reps: 6, weight: bMax * variation2Difficulty * 0.5 },
+            { reps: 6, weight: bMax * variation2Difficulty * 0.7 },
+            { reps: 6, weight: bMax * variation2Difficulty * 0.9 },
+            { reps: 6, weight: bMax * variation2Difficulty },
+            { reps: 6, weight: bMax * variation2Difficulty },
+            { reps: 6, weight: bMax * variation2Difficulty },
+          ],
+        },
+        {
+          name: accessory1.name,
+          sets: [
+            {
+              reps: 8,
+              weight: accessory1.weight * max,
+            },
+            {
+              reps: 8,
+              weight: accessory1.weight * max,
+            },
+            {
+              reps: 8,
+              weight: accessory1.weight * max,
+            },
+          ],
+        },
+        {
+          name: accessory2.name,
+          sets: [
+            {
+              reps: 8,
+              weight: accessory2.weight * max,
+            },
+            {
+              reps: 8,
+              weight: accessory2.weight * max,
+            },
+            {
+              reps: 8,
+              weight: accessory2.weight * max,
+            },
+          ],
+        },
+        {
+          name: bAccessory1.name,
+          sets: [
+            {
+              reps: 8,
+              weight: bAccessory1.weight * bMax,
+            },
+            {
+              reps: 8,
+              weight: bAccessory1.weight * bMax,
+            },
+            {
+              reps: 8,
+              weight: bAccessory1.weight * bMax,
+            },
+          ],
+        },
+        {
+          name: bAccessory2.name,
+          sets: [
+            {
+              reps: 8,
+              weight: bAccessory2.weight * bMax,
+            },
+            {
+              reps: 8,
+              weight: bAccessory2.weight * bMax,
+            },
+            {
+              reps: 8,
+              weight: bAccessory2.weight * bMax,
+            },
+          ],
+        },
+        {
+          name: abAccessory.name,
+          sets: [
+            {
+              reps: 8,
+              weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+            },
+            {
+              reps: 8,
+              weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+            },
+            {
+              reps: 8,
+              weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+            },
+          ],
+        },
+      ],
+    };
+
+    return workout;
   }
 };
