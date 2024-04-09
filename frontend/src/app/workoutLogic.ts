@@ -30,10 +30,11 @@ export const determineWorkout = (data: preworkoutData) => {
   let max: number = 0;
 
   if (data.workoutProfile?.goals === "Bodybuilding") {
-    switch (data.workoutTypeToday?.toLowerCase()) {
+    switch (data.workoutTypeToday!.toLowerCase()) {
       case "squat":
         accessories = squatAccessories;
         variation = squatVariation;
+
         max = data.workoutProfile!.currSquatMax;
         break;
       case "bench":
@@ -267,22 +268,22 @@ export const determineWorkout = (data: preworkoutData) => {
       return workout;
     }
   } else {
-    switch (data.workoutProfile?.specialization.toLowerCase()) {
+    switch (data.workoutTypeToday!.toLowerCase()) {
       case "squat":
         accessories = squatAccessories;
         bAccessories = benchAccessories;
         variation = squatVariation;
         bVariation = benchVariation;
-        max = data.workoutProfile.currSquatMax;
-        bMax = data.workoutProfile.currBenchMax;
+        max = data.workoutProfile!.currSquatMax;
+        bMax = data.workoutProfile!.currBenchMax;
         break;
       case "deadlift":
         accessories = deadliftAccessories;
         bAccessories = benchAccessories;
         variation = deadliftVariation;
         bVariation = benchVariation;
-        max = data.workoutProfile.currDeadliftMax;
-        bMax = data.workoutProfile.currBenchMax;
+        max = data.workoutProfile!.currDeadliftMax;
+        bMax = data.workoutProfile!.currBenchMax;
         break;
       default:
         break;
