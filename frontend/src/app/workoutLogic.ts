@@ -23,9 +23,10 @@ export const determineWorkout = (data: preworkoutData) => {
     exercises: Array<Exercise>;
   };
   let accessories: any[] = [];
-  let variation: { name: any }[] = [];
+  let variation: any[] = [];
   let bAccessories: any[] = [];
   let bVariation: any[] = [];
+  let bMax: number = 0;
   let max: number = 0;
 
   if (data.workoutProfile?.goals === "Bodybuilding") {
@@ -275,12 +276,16 @@ export const determineWorkout = (data: preworkoutData) => {
         bAccessories = benchAccessories;
         variation = squatVariation;
         bVariation = benchVariation;
+        max = data.workoutProfile.currSquatMax;
+        bMax = data.workoutProfile.currBenchMax;
         break;
       case "deadlift":
         accessories = deadliftAccessories;
         bAccessories = benchAccessories;
         variation = deadliftVariation;
         bVariation = benchVariation;
+        max = data.workoutProfile.currDeadliftMax;
+        bMax = data.workoutProfile.currBenchMax;
         break;
       default:
         break;
@@ -310,13 +315,23 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation1,
             sets: [
-              { reps: 5, weight: max * 0.3 },
-              { reps: 3, weight: max * 0.35 },
-              { reps: 1, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.45 },
-              { reps: 10, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.55 },
+              { reps: 6, weight: max * variation1.easy * 0.5 },
+              { reps: 6, weight: max * variation1.easy * 0.7 },
+              { reps: 6, weight: max * variation1.easy * 0.9 },
+              { reps: 6, weight: max * variation1.easy },
+              { reps: 6, weight: max * variation1.easy },
+              { reps: 6, weight: max * variation1.easy },
+            ],
+          },
+          {
+            name: variation2,
+            sets: [
+              { reps: 6, weight: bMax * variation2.easy * 0.5 },
+              { reps: 6, weight: bMax * variation2.easy * 0.7 },
+              { reps: 6, weight: bMax * variation2.easy * 0.9 },
+              { reps: 6, weight: bMax * variation2.easy },
+              { reps: 6, weight: bMax * variation2.easy },
+              { reps: 6, weight: bMax * variation2.easy },
             ],
           },
           {
@@ -350,6 +365,40 @@ export const determineWorkout = (data: preworkoutData) => {
               {
                 reps: 8,
                 weight: accessory2.weight * max,
+              },
+            ],
+          },
+          {
+            name: bAccessory1.name,
+            sets: [
+              {
+                reps: 8,
+                weight: bAccessory1.weight * bMax,
+              },
+              {
+                reps: 8,
+                weight: bAccessory1.weight * bMax,
+              },
+              {
+                reps: 8,
+                weight: bAccessory1.weight * bMax,
+              },
+            ],
+          },
+          {
+            name: bAccessory2.name,
+            sets: [
+              {
+                reps: 8,
+                weight: bAccessory2.weight * bMax,
+              },
+              {
+                reps: 8,
+                weight: bAccessory2.weight * bMax,
+              },
+              {
+                reps: 8,
+                weight: bAccessory2.weight * bMax,
               },
             ],
           },
