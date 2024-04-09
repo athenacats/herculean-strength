@@ -322,7 +322,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
-            name: variation1,
+            name: variation1.name,
             sets: [
               { reps: 6, weight: max * variation1Difficulty * 0.5 },
               { reps: 6, weight: max * variation1Difficulty * 0.7 },
@@ -333,7 +333,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
-            name: variation2,
+            name: variation2.name,
             sets: [
               { reps: 6, weight: bMax * variation2Difficulty * 0.5 },
               { reps: 6, weight: bMax * variation2Difficulty * 0.7 },
@@ -445,7 +445,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
-            name: variation1,
+            name: variation1.name,
             sets: [
               { reps: 5, weight: max * variation1Difficulty * 0.4 },
               { reps: 4, weight: max * variation1Difficulty * 0.55 },
@@ -459,7 +459,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
-            name: variation2,
+            name: variation2.name,
             sets: [
               { reps: 5, weight: bMax * variation2Difficulty * 0.4 },
               { reps: 4, weight: bMax * variation2Difficulty * 0.55 },
@@ -542,7 +542,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
-            name: compVariation1,
+            name: compVariation1.name,
             sets: [
               { reps: 5, weight: max * variation1Difficulty * 0.4 },
               { reps: 4, weight: max * variation1Difficulty * 0.55 },
@@ -553,7 +553,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
-            name: compVariation2,
+            name: compVariation2.name,
             sets: [
               { reps: 5, weight: bMax * variation2Difficulty * 0.4 },
               { reps: 4, weight: bMax * variation2Difficulty * 0.55 },
