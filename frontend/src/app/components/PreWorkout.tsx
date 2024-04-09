@@ -10,8 +10,10 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 import { determineWorkout } from "../workoutLogic";
+import { useWorkout } from "../WorkoutProvider";
 
 export default function PreWorkout() {
+  const { setWorkout } = useWorkout();
   const [nutrition, setNutrition] = useState(2);
   const [nutritionLabel, setNutritionLabel] = useState("Okay");
   const [energy, setEnergy] = useState(2);
@@ -83,6 +85,7 @@ export default function PreWorkout() {
     console.log("preworkout", data);
     const workout = determineWorkout(data);
     console.log(workout);
+    setWorkout(workout);
     //localStorage.setItem("preWorkoutData", JSON.stringify(data));
     router.replace("start-workout");
   };
