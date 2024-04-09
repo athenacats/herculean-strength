@@ -420,15 +420,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: abAccessory.weight * bMax,
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: abAccessory.weight * bMax,
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: abAccessory.weight * bMax,
               },
             ],
           },
