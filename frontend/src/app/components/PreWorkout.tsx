@@ -83,13 +83,8 @@ export default function PreWorkout() {
     console.log("preworkout", data);
     const workout = determineWorkout(data);
     console.log(workout);
-    /*const preWorkoutData = {
-      nutrition,
-      energy,
-      readiness,
-    };*/
     //localStorage.setItem("preWorkoutData", JSON.stringify(data));
-    //router.replace("start-workout");
+    router.replace("start-workout");
   };
 
   return (
