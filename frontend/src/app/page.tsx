@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   const { data: session } = useSession();
-  console.log(session);
+  const workout = sessionStorage.getItem("workout");
 
   return (
     <>
@@ -31,11 +31,20 @@ export default function Home() {
         <div className="flex flex-col h-96 pt-10 justify-around items-center">
           <h1 className="text-4xl text-center">Hello {session?.user?.name}!</h1>
           <div className="button-container flex gap-10">
-            <Link href="/preworkout">
-              <button className="bg-amber-600 p-2 rounded-xl">
-                Start a new workout
-              </button>
-            </Link>
+            {!workout ? (
+              <Link href="/preworkout">
+                <button className="bg-amber-600 p-2 rounded-xl">
+                  Start a new workout
+                </button>
+              </Link>
+            ) : (
+              <Link href="/start-workout">
+                <button className="bg-amber-600 p-2 rounded-xl">
+                  Resume your workout
+                </button>
+              </Link>
+            )}
+
             <Link href="/stats">
               <button className="bg-amber-600 p-2 rounded-xl">
                 See your previous stats
