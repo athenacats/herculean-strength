@@ -24,6 +24,7 @@ export default function PreWorkout() {
   const router = useRouter();
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
+  const [error, setError] = useState("");
 
   const handleNutritionChange = (e: any) => {
     const selectedValue = parseInt(e.target.value, 10);
@@ -75,6 +76,10 @@ export default function PreWorkout() {
   }, []);
 
   const handleSubmit = () => {
+    if (!workoutType) {
+      setError("Please select a type of workout");
+      return;
+    }
     const value = (nutrition + energy + readiness) / 3;
     const data: preworkoutData = {
       value,
@@ -109,6 +114,7 @@ export default function PreWorkout() {
               id="nutrition"
               list="markers"
               name="nutrition"
+              required
               onChange={handleNutritionChange}
               className=" h-4 w-72 rounded bg-gray-700 outline-none focus:ring-4 focus:ring-
           purple-300 focus:border-purple-300 shadow-md"
@@ -138,6 +144,7 @@ export default function PreWorkout() {
               min={0}
               max={5}
               step={1}
+              required
               value={energy}
               id="energy"
               list="markers"
@@ -170,6 +177,7 @@ export default function PreWorkout() {
               type="range"
               min={0}
               max={5}
+              required
               step={1}
               value={readiness}
               id="readiness"
@@ -265,13 +273,14 @@ export default function PreWorkout() {
             </>
           )}
         </div>
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <button
             className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
             onClick={handleSubmit}
           >
             Take Me To Today&apos;s Workout
           </button>
+          {error && <div className="text-red-600">{error}</div>}
         </div>
       </div>
     </>
