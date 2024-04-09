@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useWorkout } from "../WorkoutProvider";
 
 function StartWorkout() {
-  const [workout, setWorkout] = useState(null);
+  const [workout, setWorkout]: any[] = useState(null);
 
   useEffect(() => {
     const storedWorkout = localStorage.getItem("workout");
@@ -21,11 +21,11 @@ function StartWorkout() {
         <h1>Start Workout</h1>
         <div>
           {workout &&
-            workout!.exercises.map((exercise, index) => (
+            workout!.exercises.map((exercise: any, index: any) => (
               <div key={index}>
                 <h2>{exercise.name.name}</h2>
                 <ul>
-                  {exercise.sets.map((set, setIndex) => (
+                  {exercise.sets.map((set: any, setIndex: any) => (
                     <li key={setIndex}>
                       Reps: {set.reps}, Weight: {set.weight}
                     </li>
