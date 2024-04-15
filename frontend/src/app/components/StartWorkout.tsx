@@ -11,6 +11,16 @@ function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
+  const [inputValues, setInputValues] = useState<Array<number | string>>([]);
+
+  const handleInputChange = (index: number, value: number | string) => {
+    setInputValues((prevState) => {
+      const newValues = [...prevState];
+      newValues[index] = value;
+      return newValues;
+    });
+    console.log(inputValues);
+  };
 
   useEffect(() => {
     const storedWorkout = sessionStorage.getItem("workout");
@@ -30,11 +40,21 @@ function StartWorkout() {
       });
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log;
+    const updatedWorkout = workout.exercises.map((exercise: any) => ({
+      ...exercise,
+      sets: exercise.sets.map((set: any, setIndex: number) => ({
+        ...set,
+        weight: Number(inputValues[setIndex]) || set.weight,
+      })),
+    }));
+    console.log("updated workout ", updatedWorkout);
     const workoutDetails = {
       userEmail: userWorkoutProfile?.user,
       date: new Date(),
-      exercises: workout,
+      exercises: updatedWorkout,
     };
     console.log(workoutDetails);
   };
@@ -44,7 +64,6 @@ function StartWorkout() {
       <Timer key={setIndex} />
     ));
   };
-  console.log(workout);
 
   if (!workout) {
     <div>Loading...</div>;
@@ -104,6 +123,9 @@ function StartWorkout() {
                           <input
                             type="number"
                             required
+                            onChange={(e) =>
+                              handleInputChange(setIndex, e.target.value)
+                            }
                             placeholder={set.weight}
                             className="text-center py-4 border-yellow-500 border-b text-lg w-full"
                           ></input>
