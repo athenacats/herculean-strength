@@ -15,25 +15,59 @@ function StartWorkout() {
   } else {
     return (
       <div>
-        <h1 className="text-4xl text-center">Start Workout</h1>
-        <table>
+        <h1 className="text-4xl text-center mb-8">Start Workout</h1>
+        <table className="table-auto border-collapse border border-yellow-500 w-4/6 m-auto">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Reps</th>
-              <th>Weight</th>
+              <th className="border border-yellow-500 text-2xl">Name</th>
+              <th className="border border-yellow-500 text-2xl">Reps</th>
+              <th className="border border-yellow-500 text-2xl">Weight</th>
+              <th className="border border-yellow-500 text-2xl">
+                Actual Weight
+              </th>
             </tr>
           </thead>
           <tbody>
             {workout &&
               workout!.exercises.map((exercise: any, index: any) => (
                 <tr key={index}>
-                  <td>{exercise.name}</td>
+                  <td className="border border-yellow-500 text-xl">
+                    {exercise.name}
+                  </td>
+                  <td className="border border-yellow-500 text-lg">
+                    <ul>
+                      {exercise.sets.map((set: any, setIndex: number) => (
+                        <li
+                          className=" border-yellow-500 border-b"
+                          key={setIndex}
+                        >
+                          {set.reps}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td className="border border-yellow-500">
+                    <ul>
+                      {exercise.sets.map((set: any, setIndex: number) => (
+                        <li
+                          className=" border-yellow-500 border-b text-lg"
+                          key={setIndex}
+                        >
+                          {set.weight}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
                   <td>
                     <ul>
-                      {exercise.sets.map((set: any, setIndex: any) => (
+                      {exercise.sets.map((set: any, setIndex: number) => (
                         <li key={setIndex}>
-                          Reps: {set.reps}, Weight: {set.weight}
+                          <input
+                            type="number"
+                            required
+                            placeholder={set.weight}
+                            className=" border-yellow-500 border-b text-lg"
+                          ></input>
                         </li>
                       ))}
                     </ul>
@@ -42,21 +76,6 @@ function StartWorkout() {
               ))}
           </tbody>
         </table>
-        <div>
-          {workout &&
-            workout!.exercises.map((exercise: any, index: any) => (
-              <div key={index}>
-                <h2>{exercise.name.name}</h2>
-                <ul>
-                  {exercise.sets.map((set: any, setIndex: any) => (
-                    <li key={setIndex}>
-                      Reps: {set.reps}, Weight: {set.weight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-        </div>
       </div>
     );
   }
