@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { Timer } from "./Timer";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
@@ -25,6 +26,7 @@ function StartWorkout() {
               <th className="border border-yellow-500 text-2xl">
                 Actual Weight
               </th>
+              <th className="border border-yellow-500 text-2xl">Rest Timer</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +70,15 @@ function StartWorkout() {
                             placeholder={set.weight}
                             className=" border-yellow-500 border-b text-lg"
                           ></input>
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      {exercise.sets.map((set: any, setIndex: number) => (
+                        <li key={setIndex}>
+                          <Timer />
                         </li>
                       ))}
                     </ul>
