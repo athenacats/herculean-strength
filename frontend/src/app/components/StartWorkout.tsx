@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Timer } from "./Timer";
+import { Button } from "react-bootstrap";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
@@ -23,8 +24,8 @@ function StartWorkout() {
     <div>Loading...</div>;
   } else {
     return (
-      <div>
-        <h1 className="text-4xl text-center mb-8">Start Workout</h1>
+      <div className="flex flex-col items-center">
+        <h1 className="text-4xl text-center my-8">Start Workout</h1>
         <table className="table-auto border-collapse border border-yellow-500 w-4/6 m-auto">
           <thead>
             <tr>
@@ -91,6 +92,9 @@ function StartWorkout() {
               ))}
           </tbody>
         </table>
+        <Button className="my-8 text-2xl p-2 rounded-xl bg-amber-600 ">
+          Complete Workout
+        </Button>
       </div>
     );
   }
