@@ -11,6 +11,14 @@ function StartWorkout() {
     const parsedWorkout = storedWorkout ? JSON.parse(storedWorkout) : null;
     setWorkout(parsedWorkout);
   }, []);
+
+  const renderTimersForSets = (exerciseSets: any[]) => {
+    return exerciseSets.map((set: any, setIndex: number) => (
+      <Timer key={setIndex} />
+    ));
+  };
+  console.log(workout);
+
   if (!workout) {
     <div>Loading...</div>;
   } else {
@@ -22,9 +30,11 @@ function StartWorkout() {
             <tr>
               <th className="border border-yellow-500 text-2xl">Name</th>
               <th className="border border-yellow-500 text-2xl">Reps</th>
-              <th className="border border-yellow-500 text-2xl">Weight</th>
               <th className="border border-yellow-500 text-2xl">
-                Actual Weight
+                Weight ({workout.exercises[0].units})
+              </th>
+              <th className="border border-yellow-500 text-2xl">
+                Actual Weight ({workout.exercises[0].units})
               </th>
               <th className="border border-yellow-500 text-2xl">Rest Timer</th>
             </tr>
@@ -32,15 +42,15 @@ function StartWorkout() {
           <tbody>
             {workout &&
               workout!.exercises.map((exercise: any, index: any) => (
-                <tr key={index}>
-                  <td className="border border-yellow-500 text-xl">
+                <tr className="" key={index}>
+                  <td className="py-4 border border-yellow-500 text-xl">
                     {exercise.name}
                   </td>
                   <td className="border border-yellow-500 text-lg">
                     <ul>
                       {exercise.sets.map((set: any, setIndex: number) => (
                         <li
-                          className=" border-yellow-500 border-b"
+                          className="py-4  border-yellow-500 border-b"
                           key={setIndex}
                         >
                           {set.reps}
@@ -48,11 +58,11 @@ function StartWorkout() {
                       ))}
                     </ul>
                   </td>
-                  <td className="border border-yellow-500">
+                  <td className=" border border-yellow-500 text-lg">
                     <ul>
                       {exercise.sets.map((set: any, setIndex: number) => (
                         <li
-                          className=" border-yellow-500 border-b text-lg"
+                          className="py-4 border-yellow-500 border-b text-lg"
                           key={setIndex}
                         >
                           {set.weight}
@@ -60,7 +70,7 @@ function StartWorkout() {
                       ))}
                     </ul>
                   </td>
-                  <td>
+                  <td className=" border border-yellow-500 text-lg">
                     <ul>
                       {exercise.sets.map((set: any, setIndex: number) => (
                         <li key={setIndex}>
@@ -68,20 +78,14 @@ function StartWorkout() {
                             type="number"
                             required
                             placeholder={set.weight}
-                            className=" border-yellow-500 border-b text-lg"
+                            className="py-4 border-yellow-500 border-b text-lg"
                           ></input>
                         </li>
                       ))}
                     </ul>
                   </td>
-                  <td>
-                    <ul>
-                      {exercise.sets.map((set: any, setIndex: number) => (
-                        <li key={setIndex}>
-                          <Timer />
-                        </li>
-                      ))}
-                    </ul>
+                  <td className="border border-yellow-500 text-lg">
+                    <ul className=" ">{renderTimersForSets(exercise.sets)}</ul>
                   </td>
                 </tr>
               ))}

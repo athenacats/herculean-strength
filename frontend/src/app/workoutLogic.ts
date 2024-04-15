@@ -11,6 +11,7 @@ import { preworkoutData } from "./types/preWorkoutTypes";
 
 export const determineWorkout = (data: preworkoutData) => {
   type Exercise = {
+    units: string;
     name: string;
     sets: Array<{
       reps: number;
@@ -61,6 +62,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data.workoutProfile.weightUnits,
             name: variation[0].name,
             sets: [
               { reps: 5, weight: Math.round(max * 0.3) },
@@ -73,6 +75,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory1.name,
             sets: [
               {
@@ -90,6 +93,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory2.name,
             sets: [
               {
@@ -107,6 +111,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: abAccessory.name,
             sets: [
               {
@@ -136,6 +141,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data.workoutProfile.weightUnits,
             name: variation[0].name,
             sets: [
               { reps: 5, weight: Math.round(max * 0.35) },
@@ -148,6 +154,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory1.name,
             sets: [
               {
@@ -165,6 +172,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory2.name,
             sets: [
               {
@@ -182,6 +190,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: abAccessory.name,
             sets: [
               {
@@ -211,6 +220,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data.workoutProfile.weightUnits,
             name: variation[0].name,
             sets: [
               { reps: 5, weight: Math.round(max * 0.35) },
@@ -223,6 +233,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory1.name,
             sets: [
               {
@@ -240,6 +251,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory2.name,
             sets: [
               {
@@ -257,6 +269,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: abAccessory.name,
             sets: [
               {
@@ -340,6 +353,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data.workoutProfile.weightUnits,
             name: variation1.name,
             sets: [
               {
@@ -356,6 +370,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: variation2.name,
             sets: [
               {
@@ -376,6 +391,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory1.name,
             sets: [
               {
@@ -393,6 +409,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: accessory2.name,
             sets: [
               {
@@ -410,6 +427,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: bAccessory1.name,
             sets: [
               {
@@ -427,6 +445,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: bAccessory2.name,
             sets: [
               {
@@ -444,6 +463,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data.workoutProfile.weightUnits,
             name: abAccessory.name,
             sets: [
               {
@@ -477,6 +497,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data!.workoutProfile!.weightUnits,
             name: variation1.name,
             sets: [
               { reps: 5, weight: Math.round(max * variation1Difficulty * 0.4) },
@@ -494,6 +515,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: variation2.name,
             sets: [
               {
@@ -520,6 +542,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: accessory1.name,
             sets: [
               {
@@ -537,6 +560,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: bAccessory1.name,
             sets: [
               {
@@ -554,6 +578,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: abAccessory.name,
             sets: [
               {
@@ -589,6 +614,7 @@ export const determineWorkout = (data: preworkoutData) => {
       const workout: Workout = {
         exercises: [
           {
+            units: data!.workoutProfile!.weightUnits,
             name: compVariation1.name,
             sets: [
               { reps: 5, weight: Math.round(max * variation1Difficulty * 0.4) },
@@ -603,6 +629,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: compVariation2.name,
             sets: [
               {
@@ -626,6 +653,7 @@ export const determineWorkout = (data: preworkoutData) => {
             ],
           },
           {
+            units: data!.workoutProfile!.weightUnits,
             name: abAccessory.name,
             sets: [
               {

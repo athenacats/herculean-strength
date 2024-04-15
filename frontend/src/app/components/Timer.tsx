@@ -25,8 +25,13 @@ export const Timer = () => {
   const remainingSeconds = seconds % 60;
 
   return (
-    <span>
-      <Button onClick={startTimer}>Rest</Button>
+    <span className="flex gap-4 py-4">
+      <Button
+        className="bg-amber-600 text-lg px-1 rounded-sm"
+        onClick={startTimer}
+      >
+        Rest
+      </Button>
       {`${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`}
     </span>
   );
