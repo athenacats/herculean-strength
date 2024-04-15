@@ -3,15 +3,41 @@
 import React, { useEffect, useState } from "react";
 import { Timer } from "./Timer";
 import { Button } from "react-bootstrap";
+import axios from "axios";
+import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
+import router from "next/router";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
+  const [userWorkoutProfile, setUserWorkoutProfile] =
+    useState<UserWorkoutProfileInfo | null>(null);
 
   useEffect(() => {
     const storedWorkout = sessionStorage.getItem("workout");
     const parsedWorkout = storedWorkout ? JSON.parse(storedWorkout) : null;
     setWorkout(parsedWorkout);
+
+    axios
+      .get("api/checkWorkoutProfile")
+      .then((res) => {
+        const hasProfile = res.data;
+        setUserWorkoutProfile(hasProfile);
+      })
+
+      .catch((err) => {
+        console.log("this " + err);
+        router.push("/");
+      });
   }, []);
+
+  const handleSubmit = () => {
+    const workoutDetails = {
+      userEmail: userWorkoutProfile?.user,
+      date: new Date(),
+      exercises: workout,
+    };
+    console.log(workoutDetails);
+  };
 
   const renderTimersForSets = (exerciseSets: any[]) => {
     return exerciseSets.map((set: any, setIndex: number) => (
@@ -92,7 +118,10 @@ function StartWorkout() {
               ))}
           </tbody>
         </table>
-        <Button className="my-8 text-2xl p-2 rounded-xl bg-amber-600 ">
+        <Button
+          onClick={handleSubmit}
+          className="my-8 text-2xl p-2 rounded-xl bg-amber-600 "
+        >
           Complete Workout
         </Button>
       </div>
