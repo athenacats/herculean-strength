@@ -4,9 +4,13 @@ import { Button } from "react-bootstrap";
 export const Timer = () => {
   const [seconds, setSeconds] = useState(180);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+  const [bgColor, setBgColor] = useState(
+    "bg-amber-600 text-lg px-1 rounded-sm"
+  );
 
   const startTimer = () => {
     setSeconds(180); // Reset the timer
+    setBgColor("bg-slate-400 text-lg px-1 rounded-sm");
     if (!intervalId) {
       const id = setInterval(() => {
         setSeconds((prevSeconds) => {
@@ -25,11 +29,8 @@ export const Timer = () => {
   const remainingSeconds = seconds % 60;
 
   return (
-    <span className="flex gap-4 py-4">
-      <Button
-        className="bg-amber-600 text-lg px-1 rounded-sm"
-        onClick={startTimer}
-      >
+    <span className="flex gap-4 py-4 border-yellow-500 border-b">
+      <Button className={bgColor} onClick={startTimer}>
         Rest
       </Button>
       {`${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`}

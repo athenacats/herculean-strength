@@ -34,7 +34,7 @@ function StartWorkout() {
                 Weight ({workout.exercises[0].units})
               </th>
               <th className="border border-yellow-500 text-2xl">
-                Actual Weight ({workout.exercises[0].units})
+                Actual <br /> Weight ({workout.exercises[0].units})
               </th>
               <th className="border border-yellow-500 text-2xl">Rest Timer</th>
             </tr>
@@ -50,7 +50,7 @@ function StartWorkout() {
                     <ul>
                       {exercise.sets.map((set: any, setIndex: number) => (
                         <li
-                          className="py-4  border-yellow-500 border-b"
+                          className="py-4  border-yellow-500 border-b text-center"
                           key={setIndex}
                         >
                           {set.reps}
@@ -62,7 +62,7 @@ function StartWorkout() {
                     <ul>
                       {exercise.sets.map((set: any, setIndex: number) => (
                         <li
-                          className="py-4 border-yellow-500 border-b text-lg"
+                          className="py-4 text-center border-yellow-500 border-b text-lg"
                           key={setIndex}
                         >
                           {set.weight}
@@ -78,7 +78,7 @@ function StartWorkout() {
                             type="number"
                             required
                             placeholder={set.weight}
-                            className="py-4 border-yellow-500 border-b text-lg"
+                            className="text-center py-4 border-yellow-500 border-b text-lg w-full"
                           ></input>
                         </li>
                       ))}
