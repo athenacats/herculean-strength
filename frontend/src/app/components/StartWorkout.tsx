@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 function StartWorkout() {
@@ -11,14 +10,38 @@ function StartWorkout() {
     const parsedWorkout = storedWorkout ? JSON.parse(storedWorkout) : null;
     setWorkout(parsedWorkout);
   }, []);
-
-  console.log(workout);
   if (!workout) {
     <div>Loading...</div>;
   } else {
     return (
       <div>
-        <h1>Start Workout</h1>
+        <h1 className="text-4xl text-center">Start Workout</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Reps</th>
+              <th>Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workout &&
+              workout!.exercises.map((exercise: any, index: any) => (
+                <tr key={index}>
+                  <td>{exercise.name}</td>
+                  <td>
+                    <ul>
+                      {exercise.sets.map((set: any, setIndex: any) => (
+                        <li key={setIndex}>
+                          Reps: {set.reps}, Weight: {set.weight}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
         <div>
           {workout &&
             workout!.exercises.map((exercise: any, index: any) => (

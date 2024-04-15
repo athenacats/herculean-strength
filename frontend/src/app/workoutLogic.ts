@@ -63,13 +63,13 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation[0].name,
             sets: [
-              { reps: 5, weight: max * 0.3 },
-              { reps: 3, weight: max * 0.35 },
-              { reps: 1, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.45 },
-              { reps: 10, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.55 },
+              { reps: 5, weight: Math.round(max * 0.3) },
+              { reps: 3, weight: Math.round(max * 0.35) },
+              { reps: 1, weight: Math.round(max * 0.4) },
+              { reps: 1, weight: Math.round(max * 0.45) },
+              { reps: 10, weight: Math.round(max * 0.55) },
+              { reps: 10, weight: Math.round(max * 0.55) },
+              { reps: 10, weight: Math.round(max * 0.55) },
             ],
           },
           {
@@ -77,15 +77,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
             ],
           },
@@ -94,15 +94,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
             ],
           },
@@ -111,15 +111,21 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
             ],
           },
@@ -132,13 +138,13 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation[0].name,
             sets: [
-              { reps: 5, weight: max * 0.35 },
-              { reps: 3, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.45 },
-              { reps: 1, weight: max * 0.55 },
-              { reps: 10, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.65 },
+              { reps: 5, weight: Math.round(max * 0.35) },
+              { reps: 3, weight: Math.round(max * 0.4) },
+              { reps: 1, weight: Math.round(max * 0.45) },
+              { reps: 1, weight: Math.round(max * 0.55) },
+              { reps: 10, weight: Math.round(max * 0.65) },
+              { reps: 10, weight: Math.round(max * 0.65) },
+              { reps: 10, weight: Math.round(max * 0.65) },
             ],
           },
           {
@@ -146,15 +152,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 12,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 12,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 12,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
             ],
           },
@@ -163,15 +169,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 12,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 12,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 12,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
             ],
           },
@@ -180,15 +186,21 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 12,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
             ],
           },
@@ -201,13 +213,13 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation[0].name,
             sets: [
-              { reps: 5, weight: max * 0.35 },
-              { reps: 3, weight: max * 0.4 },
-              { reps: 1, weight: max * 0.5 },
-              { reps: 1, weight: max * 0.65 },
-              { reps: 10, weight: max * 0.75 },
-              { reps: 10, weight: max * 0.75 },
-              { reps: 10, weight: max * 0.75 },
+              { reps: 5, weight: Math.round(max * 0.35) },
+              { reps: 3, weight: Math.round(max * 0.4) },
+              { reps: 1, weight: Math.round(max * 0.5) },
+              { reps: 1, weight: Math.round(max * 0.65) },
+              { reps: 10, weight: Math.round(max * 0.75) },
+              { reps: 10, weight: Math.round(max * 0.75) },
+              { reps: 10, weight: Math.round(max * 0.75) },
             ],
           },
           {
@@ -215,15 +227,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 15,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 15,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 15,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
             ],
           },
@@ -232,15 +244,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 15,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 15,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 15,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
             ],
           },
@@ -249,15 +261,21 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
               {
                 reps: 15,
-                weight: abAccessory.weight * data.workoutProfile.currBenchMax,
+                weight: Math.round(
+                  abAccessory.weight * data.workoutProfile.currBenchMax
+                ),
               },
             ],
           },
@@ -324,23 +342,37 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation1.name,
             sets: [
-              { reps: 6, weight: max * variation1Difficulty * 0.5 },
-              { reps: 6, weight: max * variation1Difficulty * 0.7 },
-              { reps: 6, weight: max * variation1Difficulty * 0.9 },
-              { reps: 6, weight: max * variation1Difficulty },
-              { reps: 6, weight: max * variation1Difficulty },
-              { reps: 6, weight: max * variation1Difficulty },
+              {
+                reps: 6,
+                weight: Math.round(
+                  Math.round(max * variation1Difficulty) * 0.5
+                ),
+              },
+              { reps: 6, weight: Math.round(max * variation1Difficulty * 0.7) },
+              { reps: 6, weight: Math.round(max * variation1Difficulty * 0.9) },
+              { reps: 6, weight: Math.round(max * variation1Difficulty) },
+              { reps: 6, weight: Math.round(max * variation1Difficulty) },
+              { reps: 6, weight: Math.round(max * variation1Difficulty) },
             ],
           },
           {
             name: variation2.name,
             sets: [
-              { reps: 6, weight: bMax * variation2Difficulty * 0.5 },
-              { reps: 6, weight: bMax * variation2Difficulty * 0.7 },
-              { reps: 6, weight: bMax * variation2Difficulty * 0.9 },
-              { reps: 6, weight: bMax * variation2Difficulty },
-              { reps: 6, weight: bMax * variation2Difficulty },
-              { reps: 6, weight: bMax * variation2Difficulty },
+              {
+                reps: 6,
+                weight: Math.round(bMax * variation2Difficulty * 0.5),
+              },
+              {
+                reps: 6,
+                weight: Math.round(bMax * variation2Difficulty * 0.7),
+              },
+              {
+                reps: 6,
+                weight: Math.round(bMax * variation2Difficulty * 0.9),
+              },
+              { reps: 6, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 6, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 6, weight: Math.round(bMax * variation2Difficulty) },
             ],
           },
           {
@@ -348,15 +380,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
             ],
           },
@@ -365,15 +397,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory2.weight * max,
+                weight: Math.round(accessory2.weight * max),
               },
             ],
           },
@@ -382,15 +414,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
             ],
           },
@@ -399,15 +431,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: bAccessory2.weight * bMax,
+                weight: Math.round(bAccessory2.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory2.weight * bMax,
+                weight: Math.round(bAccessory2.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory2.weight * bMax,
+                weight: Math.round(bAccessory2.weight * bMax),
               },
             ],
           },
@@ -416,15 +448,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
             ],
           },
@@ -447,29 +479,44 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: variation1.name,
             sets: [
-              { reps: 5, weight: max * variation1Difficulty * 0.4 },
-              { reps: 4, weight: max * variation1Difficulty * 0.55 },
-              { reps: 3, weight: max * variation1Difficulty * 0.7 },
-              { reps: 3, weight: max * variation1Difficulty * 0.9 },
-              { reps: 3, weight: max * variation1Difficulty },
-              { reps: 3, weight: max * variation1Difficulty },
-              { reps: 3, weight: max * variation1Difficulty },
-              { reps: 3, weight: max * variation1Difficulty },
-              { reps: 3, weight: max * variation1Difficulty },
+              { reps: 5, weight: Math.round(max * variation1Difficulty * 0.4) },
+              {
+                reps: 4,
+                weight: Math.round(max * variation1Difficulty * 0.55),
+              },
+              { reps: 3, weight: Math.round(max * variation1Difficulty * 0.7) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty * 0.9) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty) },
+              { reps: 3, weight: Math.round(max * variation1Difficulty) },
             ],
           },
           {
             name: variation2.name,
             sets: [
-              { reps: 5, weight: bMax * variation2Difficulty * 0.4 },
-              { reps: 4, weight: bMax * variation2Difficulty * 0.55 },
-              { reps: 3, weight: bMax * variation2Difficulty * 0.7 },
-              { reps: 3, weight: bMax * variation2Difficulty * 0.9 },
-              { reps: 3, weight: bMax * variation2Difficulty },
-              { reps: 3, weight: bMax * variation2Difficulty },
-              { reps: 3, weight: bMax * variation2Difficulty },
-              { reps: 3, weight: bMax * variation2Difficulty },
-              { reps: 3, weight: bMax * variation2Difficulty },
+              {
+                reps: 5,
+                weight: Math.round(bMax * variation2Difficulty * 0.4),
+              },
+              {
+                reps: 4,
+                weight: Math.round(bMax * variation2Difficulty * 0.55),
+              },
+              {
+                reps: 3,
+                weight: Math.round(bMax * variation2Difficulty * 0.7),
+              },
+              {
+                reps: 3,
+                weight: Math.round(bMax * variation2Difficulty * 0.9),
+              },
+              { reps: 3, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 3, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 3, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 3, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 3, weight: Math.round(bMax * variation2Difficulty) },
             ],
           },
           {
@@ -477,15 +524,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
               {
                 reps: 8,
-                weight: accessory1.weight * max,
+                weight: Math.round(accessory1.weight * max),
               },
             ],
           },
@@ -494,15 +541,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
               {
                 reps: 8,
-                weight: bAccessory1.weight * bMax,
+                weight: Math.round(bAccessory1.weight * bMax),
               },
             ],
           },
@@ -511,15 +558,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
             ],
           },
@@ -544,23 +591,38 @@ export const determineWorkout = (data: preworkoutData) => {
           {
             name: compVariation1.name,
             sets: [
-              { reps: 5, weight: max * variation1Difficulty * 0.4 },
-              { reps: 4, weight: max * variation1Difficulty * 0.55 },
-              { reps: 3, weight: max * variation1Difficulty * 0.7 },
-              { reps: 2, weight: max * variation1Difficulty * 0.9 },
-              { reps: 1, weight: max * variation1Difficulty },
-              { reps: 1, weight: max * variation1Difficulty },
+              { reps: 5, weight: Math.round(max * variation1Difficulty * 0.4) },
+              {
+                reps: 4,
+                weight: Math.round(max * variation1Difficulty * 0.55),
+              },
+              { reps: 3, weight: Math.round(max * variation1Difficulty * 0.7) },
+              { reps: 2, weight: Math.round(max * variation1Difficulty * 0.9) },
+              { reps: 1, weight: Math.round(max * variation1Difficulty) },
+              { reps: 1, weight: Math.round(max * variation1Difficulty) },
             ],
           },
           {
             name: compVariation2.name,
             sets: [
-              { reps: 5, weight: bMax * variation2Difficulty * 0.4 },
-              { reps: 4, weight: bMax * variation2Difficulty * 0.55 },
-              { reps: 3, weight: bMax * variation2Difficulty * 0.7 },
-              { reps: 2, weight: bMax * variation2Difficulty * 0.9 },
-              { reps: 1, weight: bMax * variation2Difficulty },
-              { reps: 1, weight: bMax * variation2Difficulty },
+              {
+                reps: 5,
+                weight: Math.round(bMax * variation2Difficulty * 0.4),
+              },
+              {
+                reps: 4,
+                weight: Math.round(bMax * variation2Difficulty * 0.55),
+              },
+              {
+                reps: 3,
+                weight: Math.round(bMax * variation2Difficulty * 0.7),
+              },
+              {
+                reps: 2,
+                weight: Math.round(bMax * variation2Difficulty * 0.9),
+              },
+              { reps: 1, weight: Math.round(bMax * variation2Difficulty) },
+              { reps: 1, weight: Math.round(bMax * variation2Difficulty) },
             ],
           },
           {
@@ -568,15 +630,15 @@ export const determineWorkout = (data: preworkoutData) => {
             sets: [
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
               {
                 reps: 8,
-                weight: abAccessory.weight * bMax,
+                weight: Math.round(abAccessory.weight * bMax),
               },
             ],
           },

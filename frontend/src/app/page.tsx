@@ -1,11 +1,18 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data: session } = useSession();
-  const workout = sessionStorage.getItem("workout");
+  const [workout, setWorkout] = useState(null);
 
+  useEffect(() => {
+    const storedWorkout = sessionStorage.getItem("workout");
+    setWorkout(storedWorkout ? JSON.parse(storedWorkout) : null);
+    console.log(workout);
+  }, []);
+  console.log(workout);
   return (
     <>
       {session === null ? (
