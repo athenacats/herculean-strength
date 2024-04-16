@@ -7,7 +7,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
-import { Button } from "react-bootstrap";
+import { workoutDataArray } from "../types/workoutData";
 
 export default function Dashboard() {
   const [userWorkoutProfile, setUserWorkoutProfile] =
@@ -15,7 +15,8 @@ export default function Dashboard() {
   const [dataError, setDataError] = useState("");
   const [workoutDetailsError, setWorkoutDetailsError] = useState("");
   const { data: session } = useSession();
-  const [userWorkoutData, setUserWorkoutData] = useState<any[] | null>(null);
+  const [userWorkoutData, setUserWorkoutData] =
+    useState<workoutDataArray | null>(null);
 
   if (session === null) redirect("/signin");
 
@@ -36,6 +37,7 @@ export default function Dashboard() {
       .get("api/checkWorkoutData")
       .then((res) => {
         const hasData = res.data;
+        console.log(hasData);
         setUserWorkoutData(hasData);
       })
 
@@ -168,7 +170,7 @@ export default function Dashboard() {
           ) : (
             ""
           )}{" "}
-          {userWorkoutData!.length === 0 ? (
+          {userWorkoutData === null ? (
             <>
               <h4 className="text-amber-600 font-bold">
                 No data to display! start your first workout!
@@ -181,9 +183,20 @@ export default function Dashboard() {
             </>
           ) : (
             <div>
-              <h4 className="text-amber-600 font-bold">
-                {userWorkoutData!.date}
-              </h4>
+              <table>
+                <tr>
+                  <th>Date</th>
+                </tr>
+                <tbody>
+                  <td>
+                    <ul>
+                      {userWorkoutData?.map((data, index) => (
+                        <li key={index}>{data!.date}</li>
+                      ))}
+                    </ul>
+                  </td>
+                </tbody>
+              </table>
             </div>
           )}
         </div>
