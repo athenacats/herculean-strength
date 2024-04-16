@@ -57,6 +57,15 @@ function StartWorkout() {
       exercises: updatedWorkout,
     };
     console.log(workoutDetails);
+    axios
+      .post("/api/saveWorkout", { workoutDetails })
+      .then((response) => {
+        console.log("Workout details saved successfully:", response.data);
+      })
+      .then(() => router.push("/post-workout"))
+      .catch((error) => {
+        console.error("Error saving workout details:", error);
+      });
   };
 
   const renderTimersForSets = (exerciseSets: any[]) => {
