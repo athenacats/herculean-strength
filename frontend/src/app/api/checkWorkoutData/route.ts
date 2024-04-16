@@ -19,18 +19,14 @@ export async function GET(
 
     const session = await getServerSession(authOptions);
 
-    console.log("session: " + session);
-
     if (!session || !session.user) {
       return NextResponse.json({ error: "Not registered" });
     }
 
     const user = session?.user?.email;
-    console.log(user);
 
-    const userFound = await WorkoutDetailsModel.findOne({ user: user });
+    const userFound = await WorkoutDetailsModel.find({ user: user });
     console.log(userFound);
-
     if (userFound) {
       return NextResponse.json(userFound);
     } else {

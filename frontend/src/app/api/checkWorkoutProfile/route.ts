@@ -18,22 +18,18 @@ export async function GET(
 
     const session = await getServerSession(authOptions);
 
-    console.log("session: " + session);
-
     if (!session || !session.user) {
       return NextResponse.json({ error: "Not registered" });
     }
 
     const user = session?.user?.email;
-    console.log(user);
 
     const userFound = await UserWorkoutProfileModel.findOne({ user: user });
-    console.log(userFound);
 
     if (userFound) {
       return NextResponse.json(userFound);
     } else {
-      return NextResponse.json({ error: "Not registered" });
+      return NextResponse.json({ error: "User not found" });
     }
   } catch (error) {
     console.error("Error during save operation:", error);
