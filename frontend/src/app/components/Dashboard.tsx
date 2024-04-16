@@ -12,12 +12,13 @@ export default function Dashboard() {
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
   const [dataError, setDataError] = useState("");
+  const [workoutDetailsError, setWorkoutDetailsError] = useState("");
   const { data: session } = useSession();
+  const [userWorkoutData, setUserWorkoutData] = useState(null);
 
   if (session === null) redirect("/signin");
 
   useEffect(() => {
-    // Checking if the user has a workout profile. If not, it will display a message asking them to create one.
     axios
       .get("api/checkWorkoutProfile")
       .then((res) => {
@@ -28,6 +29,18 @@ export default function Dashboard() {
       .catch((err) => {
         console.log("this " + err);
         setDataError("Error loading your data");
+      });
+
+    axios
+      .get("api/checkWorkoutData")
+      .then((res) => {
+        const hasData = res.data;
+        setUserWorkoutData(hasData);
+      })
+
+      .catch((err) => {
+        console.log("this " + err);
+        setWorkoutDetailsError("Error loading your data");
       });
   }, []);
 
@@ -146,6 +159,9 @@ export default function Dashboard() {
               <h4>{userWorkoutProfile.specialization}</h4>
             </div>
           </div>
+          <h2 className="text-2xl text-center font-bold">
+            Your Previous Workouts
+          </h2>
         </div>
       )}
     </div>
