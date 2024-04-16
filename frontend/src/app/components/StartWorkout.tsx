@@ -5,13 +5,14 @@ import { Timer } from "./Timer";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
   const [userWorkoutProfile, setUserWorkoutProfile] =
     useState<UserWorkoutProfileInfo | null>(null);
   const [inputValues, setInputValues] = useState<Array<number | string>>([]);
+  const router = useRouter();
 
   const handleInputChange = (index: number, value: number | string) => {
     setInputValues((prevState) => {
@@ -42,7 +43,7 @@ function StartWorkout() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log;
+
     const updatedWorkout = workout.exercises.map((exercise: any) => ({
       ...exercise,
       sets: exercise.sets.map((set: any, setIndex: number) => ({
@@ -50,22 +51,21 @@ function StartWorkout() {
         weight: Number(inputValues[setIndex]) || set.weight,
       })),
     }));
-    console.log("updated workout ", updatedWorkout);
+
     const workoutDetails = {
       userEmail: userWorkoutProfile?.user,
       date: new Date(),
       exercises: updatedWorkout,
     };
-    console.log(workoutDetails);
+
     axios
       .post("/api/saveWorkout", { workoutDetails })
-      .then((response) => {
-        console.log("Workout details saved successfully:", response.data);
-      })
-      .then(() => router.push("/post-workout"))
+      .then(() => sessionStorage.removeItem("workout"))
+      .then(() => router.replace("dashboard"))
       .catch((error) => {
         console.error("Error saving workout details:", error);
       });
+    console.log("here handle submit");
   };
 
   const renderTimersForSets = (exerciseSets: any[]) => {
