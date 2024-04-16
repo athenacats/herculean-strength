@@ -7,6 +7,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
+import { Button } from "react-bootstrap";
 
 export default function Dashboard() {
   const [userWorkoutProfile, setUserWorkoutProfile] =
@@ -14,7 +15,7 @@ export default function Dashboard() {
   const [dataError, setDataError] = useState("");
   const [workoutDetailsError, setWorkoutDetailsError] = useState("");
   const { data: session } = useSession();
-  const [userWorkoutData, setUserWorkoutData] = useState(null);
+  const [userWorkoutData, setUserWorkoutData] = useState<any[] | null>(null);
 
   if (session === null) redirect("/signin");
 
@@ -162,6 +163,29 @@ export default function Dashboard() {
           <h2 className="text-2xl text-center font-bold">
             Your Previous Workouts
           </h2>
+          {workoutDetailsError ? (
+            <h4 className="text-amber-600 font-bold">{workoutDetailsError}</h4>
+          ) : (
+            ""
+          )}{" "}
+          {userWorkoutData!.length === 0 ? (
+            <>
+              <h4 className="text-amber-600 font-bold">
+                No data to display! start your first workout!
+              </h4>{" "}
+              <Link href="/preworkout">
+                <button className="bg-amber-600 p-2 rounded-xl">
+                  Start a new workout
+                </button>
+              </Link>
+            </>
+          ) : (
+            <div>
+              <h4 className="text-amber-600 font-bold">
+                {userWorkoutData!.date}
+              </h4>
+            </div>
+          )}
         </div>
       )}
     </div>
