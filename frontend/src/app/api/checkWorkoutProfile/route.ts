@@ -29,7 +29,7 @@ export async function GET(
     if (userFound) {
       return NextResponse.json(userFound);
     } else {
-      return NextResponse.json({ error: "User not found" });
+      return NextResponse.json(null);
     }
   } catch (error) {
     console.error("Error during save operation:", error);

@@ -1,18 +1,32 @@
 "use client";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { UserWorkoutProfileInfo } from "./types/UserWorkoutProfileInfo";
 
 export default function Home() {
   const { data: session } = useSession();
   const [workout, setWorkout] = useState(null);
+  const [userWorkoutProfile, setUserWorkoutProfile] =
+    useState<UserWorkoutProfileInfo | null>(null);
 
   useEffect(() => {
     const storedWorkout = sessionStorage.getItem("workout");
     setWorkout(storedWorkout ? JSON.parse(storedWorkout) : null);
-    console.log(workout);
+
+    axios
+      .get("api/checkWorkoutProfile")
+      .then((res) => {
+        const hasProfile = res.data;
+        setUserWorkoutProfile(hasProfile);
+      })
+
+      .catch((err) => {
+        console.log("this " + err);
+      });
   }, []);
-  console.log(workout);
+
   return (
     <>
       {session === null ? (
@@ -38,21 +52,25 @@ export default function Home() {
         <div className="flex flex-col h-96 pt-10 justify-around items-center">
           <h1 className="text-4xl text-center">Hello {session?.user?.name}!</h1>
           <div className="button-container flex gap-10">
-            {!workout ? (
+            {!workout && userWorkoutProfile ? (
               <Link href="/preworkout">
                 <button className="bg-amber-600 p-2 rounded-xl">
                   Start a new workout
                 </button>
               </Link>
-            ) : (
+            ) : workout && userWorkoutProfile ? (
               <Link href="/start-workout">
                 <button className="bg-amber-600 p-2 rounded-xl">
                   Resume your workout
                 </button>
               </Link>
+            ) : userWorkoutProfile === null ? (
+              ""
+            ) : (
+              ""
             )}
 
-            <Link href="/stats">
+            <Link href="/dashboard">
               <button className="bg-amber-600 p-2 rounded-xl">
                 See your previous stats
               </button>
