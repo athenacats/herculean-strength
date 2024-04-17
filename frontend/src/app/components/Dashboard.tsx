@@ -190,72 +190,71 @@ export default function Dashboard() {
               </Link>
             </>
           ) : (
-            <div>
-              <table>
+            <table className="table-auto border-collapse border border-yellow-500 m-auto w-full">
+              <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Exercise</th>
-                  <th>Reps</th>
-                  <th>Weight</th>
+                  <th className="border border-yellow-500 text-2xl">Date</th>
+                  <th className="border border-yellow-500 text-2xl">
+                    Exercise
+                  </th>
+                  <th className="border border-yellow-500 text-2xl">Reps</th>
+                  <th className="border border-yellow-500 text-2xl">Weight</th>
                 </tr>
-                <tbody>
-                  <td>
-                    <ul>
-                      {userWorkoutData?.map((data: any, index: number) => (
-                        <li key={index}>
-                          {new Date(data!.date).toLocaleDateString("en-GB", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                          })}
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      {userWorkoutData?.map((data: any, index: number) => (
-                        <ul key={index}>
-                          {data!.exercises.map((exercise: any, idx: any) => (
-                            <li key={idx}>{exercise.name!}</li>
+              </thead>
+              <tbody>
+                {userWorkoutData?.map((data: any, index: number) => (
+                  <tr key={index}>
+                    <td className="border border-yellow-500 text-lg">
+                      {new Date(data!.date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="border border-yellow-500 text-lg">
+                      {data!.exercises.map((exercise: any, idx: any) => (
+                        <div key={idx}>
+                          {exercise.sets.map((set: any, setindex: number) => (
+                            <p
+                              className="py-4 text-center border-yellow-500 border-b text-lg"
+                              key={setindex}
+                            >
+                              {exercise.name}
+                            </p>
                           ))}
-                        </ul>
+                        </div>
                       ))}
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      {userWorkoutData?.map((data: any, index: number) => (
-                        <ul key={index}>
-                          {data!.exercises.map((exercise: any, idx: any) => (
-                            <ul key={idx}>
-                              {exercise.sets.map((set: any, index: number) => (
-                                <li key={index}>{set.reps}</li>
-                              ))}
-                            </ul>
+                    </td>
+                    <td className=" border border-yellow-500 text-lg">
+                      {data.exercises.map((exercise: any, idx: any) => (
+                        <div key={idx}>
+                          {exercise.sets.map((set: any, setindex: number) => (
+                            <p
+                              className="py-4 text-center border-yellow-500 border-b text-lg"
+                              key={setindex}
+                            >
+                              {set.reps}
+                            </p>
                           ))}
-                        </ul>
+                        </div>
                       ))}
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
-                      {userWorkoutData?.map((data: any, index: number) => (
-                        <ul key={index}>
-                          {data!.exercises.map((exercise: any, idx: any) => (
-                            <ul key={idx}>
-                              {exercise.sets.map((set: any, index: number) => (
-                                <li key={index}>{set.weight}</li>
-                              ))}
-                            </ul>
-                          ))}
-                        </ul>
-                      ))}
-                    </ul>
-                  </td>
-                </tbody>
-              </table>
-            </div>
+                    </td>
+                    <td className=" border border-yellow-500 text-lg">
+                      {data.exercises.map((exercise: any, idx: any) =>
+                        exercise.sets.map((set: any, setindex: number) => (
+                          <p
+                            className="py-4 text-center border-yellow-500 border-b text-lg"
+                            key={index}
+                          >
+                            {set.weight}
+                          </p>
+                        ))
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
       )}
