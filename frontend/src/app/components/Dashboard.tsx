@@ -4,7 +4,7 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import {
   JSXElementConstructor,
   PromiseLikeOfReactNode,
@@ -27,6 +27,7 @@ export default function Dashboard() {
     useState<WorkoutDataArray | null>(null);
   const [displayWorkoutData, setDisplayWorkoutData] =
     useState<JSX.Element | null>(null);
+  const router = useRouter();
 
   if (session === null) redirect("/signin");
 
@@ -119,6 +120,16 @@ export default function Dashboard() {
       </>
     );
     setDisplayWorkoutData(jsxElement);
+  };
+
+  const editDetails = () => {
+    axios
+      .delete("api/editDetails")
+      .then((res) => {
+        console.log(res);
+        router.push("/newuser");
+      })
+      .catch((err) => console.log("this " + err));
   };
 
   return (
@@ -228,6 +239,13 @@ export default function Dashboard() {
               <h4>{userWorkoutProfile.specialization}</h4>
             </div>
           </div>
+          <button
+            onClick={editDetails}
+            className="my-4 text-lg p-2 rounded-xl bg-amber-600"
+          >
+            Edit My Details and Goals
+          </button>
+          <hr className="bg-amber-600 w-full h-0.5" />
           <h2 className="text-2xl text-center font-bold">
             Your Previous Workouts
           </h2>
