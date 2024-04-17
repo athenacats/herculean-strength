@@ -186,13 +186,29 @@ export default function Dashboard() {
               <table>
                 <tr>
                   <th>Date</th>
+                  <th>Exercise</th>
+                  <th>Reps</th>
+                  <th>Weight</th>
                 </tr>
                 <tbody>
                   <td>
                     <ul>
                       {userWorkoutData?.map((data, index) => (
-                        <li key={index}>{data!.date}</li>
+                        <li key={index}>
+                          {new Date(data!.date).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          })}
+                        </li>
                       ))}
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      {/*userWorkoutData?.map((data, index) => (
+                        <li key={index}>{data!.exercises.name!}</li>
+                      ))*/}
                     </ul>
                   </td>
                 </tbody>
