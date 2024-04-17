@@ -149,11 +149,9 @@ export default function Dashboard() {
           Log Out
         </button>
       </div>
-      {userWorkoutProfile === null ? (
-        <p className="text-2xl text-center font-bold">Loading...</p>
-      ) : !userWorkoutProfile.user ? (
+      {!userWorkoutProfile ? (
         <Link href="/newuser">
-          <button className="m-auto border-solid border-b-2 border-amber-600 hover:text-xl">
+          <button className="m-auto border-solid border-b-2 border-amber-600 text-lg hover:text-xl">
             New Here? Lets set up your profile!
           </button>
         </Link>
@@ -246,51 +244,53 @@ export default function Dashboard() {
             Edit My Details and Goals
           </button>
           <hr className="bg-amber-600 w-full h-0.5" />
-          <h2 className="text-2xl text-center font-bold">
-            Your Previous Workouts
-          </h2>
-          {workoutDetailsError ? (
-            <h4 className="text-amber-600 font-bold">{workoutDetailsError}</h4>
-          ) : (
-            ""
-          )}{" "}
-          {userWorkoutData === null ? (
-            <>
-              <h4 className="text-amber-600 font-bold">
-                No data to display! start your first workout!
-              </h4>{" "}
-              <Link href="/preworkout">
-                <button className="bg-amber-600 p-2 rounded-xl">
-                  Start a new workout
-                </button>
-              </Link>
-            </>
-          ) : (
-            <>
-              <div className="flex justify-around w-full flex-wrap">
-                {userWorkoutData?.map((data: any, index: number) => (
-                  <button
-                    className="my-4 text-base p-2 rounded-xl bg-amber-600 active:bg-amber-400 focus:bg-amber-400 "
-                    key={index}
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      displayWorkout(index);
-                    }}
-                  >
-                    {new Date(data!.date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-                  </button>
-                ))}
-              </div>
-              {displayWorkoutData}
-            </>
-          )}
         </div>
       )}
+      <div className="w-5/6 flex flex-col justify-center items-center gap-6">
+        <h2 className="text-2xl text-center font-bold pt-4">
+          Your Previous Workouts
+        </h2>
+        {workoutDetailsError ? (
+          <h4 className="text-amber-600 font-bold">{workoutDetailsError}</h4>
+        ) : (
+          ""
+        )}{" "}
+        {userWorkoutData === null ? (
+          <>
+            <h4 className="text-amber-600 font-bold">
+              No data to display! Start your first workout!
+            </h4>{" "}
+            <Link href="/preworkout">
+              <button className="bg-amber-600 p-2 rounded-xl">
+                Start a new workout
+              </button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <div className="flex justify-around w-full flex-wrap">
+              {userWorkoutData?.map((data: any, index: number) => (
+                <button
+                  className="my-4 text-base p-2 rounded-xl bg-amber-600 active:bg-amber-400 focus:bg-amber-400 "
+                  key={index}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    displayWorkout(index);
+                  }}
+                >
+                  {new Date(data!.date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
+                </button>
+              ))}
+            </div>
+            {displayWorkoutData}
+          </>
+        )}
+      </div>
     </div>
   );
 }
