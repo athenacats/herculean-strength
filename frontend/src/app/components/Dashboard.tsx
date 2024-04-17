@@ -156,44 +156,44 @@ export default function Dashboard() {
           )}
           <div className="text-l w-5/6 flex flex-col gap-2">
             <div className="flex justify-between">
-              <h4 className="text-amber-600 font-bold">Age:</h4>
-              <h4>{userWorkoutProfile.age}</h4>
+              <h4 className="text-amber-600 font-bold text-lg">Age:</h4>
+              <h4 className="text-lg">{userWorkoutProfile.age}</h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Height:</h4>
               <h4>
                 {userWorkoutProfile.height} {userWorkoutProfile.heightUnits}
               </h4>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Weight:</h4>
               <h4>
                 {userWorkoutProfile.weight} {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Goals:</h4>
               <h4>{userWorkoutProfile.goals}</h4>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Experience:</h4>
               <h4>{userWorkoutProfile.experience}</h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Current Squat Max:</h4>
               <h4>
                 {userWorkoutProfile.currSquatMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Current Bench Max:</h4>
               <h4>
                 {userWorkoutProfile.currBenchMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">
                 Current Deadlift Max:
               </h4>
@@ -202,28 +202,28 @@ export default function Dashboard() {
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Goal Squat Max:</h4>
               <h4>
                 {userWorkoutProfile.goalSquatMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Goal Bench Max:</h4>
               <h4>
                 {userWorkoutProfile.goalBenchMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Goal Deadlift Max:</h4>
               <h4>
                 {userWorkoutProfile.goalDeadliftMax}{" "}
                 {userWorkoutProfile.weightUnits}
               </h4>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex  justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Specialization:</h4>
               <h4>{userWorkoutProfile.specialization}</h4>
             </div>
@@ -249,10 +249,10 @@ export default function Dashboard() {
             </>
           ) : (
             <>
-              <div className="flex justify-around w-full">
+              <div className="flex justify-around w-full flex-wrap">
                 {userWorkoutData?.map((data: any, index: number) => (
                   <button
-                    className="my-4 text-lg p-2 rounded-xl bg-amber-600 active:bg-amber-500 "
+                    className="my-4 text-base p-2 rounded-xl bg-amber-600 active:bg-amber-400 focus:bg-amber-400 "
                     key={index}
                     type="button"
                     onClick={(e) => {
