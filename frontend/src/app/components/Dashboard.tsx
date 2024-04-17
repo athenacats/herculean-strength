@@ -25,6 +25,8 @@ export default function Dashboard() {
   const { data: session } = useSession();
   const [userWorkoutData, setUserWorkoutData] =
     useState<WorkoutDataArray | null>(null);
+  const [displayWorkoutData, setDisplayWorkoutData] =
+    useState<JSX.Element | null>(null);
 
   if (session === null) redirect("/signin");
 
@@ -63,6 +65,62 @@ export default function Dashboard() {
       console.error(error);
     }
   };
+
+  const displayWorkout = (index: number) => {
+    setDisplayWorkoutData(null);
+    const selected = userWorkoutData![index];
+    const jsxElement = (
+      <>
+        <table className="table-auto border-collapse border border-yellow-500 m-auto w-full">
+          <thead>
+            <tr>
+              <th className="border border-yellow-500 text-2xl">Exercise</th>
+              <th className="border border-yellow-500 text-2xl">Reps</th>
+              <th className="border border-yellow-500 text-2xl">Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selected!.exercises.map((exercise: any, idx: any) => (
+              <tr key={idx}>
+                <td className="border border-yellow-500 text-lg">
+                  {exercise.sets.map((set: any, setindex: number) => (
+                    <p
+                      className="py-4 text-center border-yellow-500 border-b text-lg"
+                      key={setindex}
+                    >
+                      {exercise.name}
+                    </p>
+                  ))}
+                </td>
+                <td className=" border border-yellow-500 text-lg">
+                  {exercise.sets.map((set: any, setindex: number) => (
+                    <p
+                      className="py-4 text-center border-yellow-500 border-b text-lg"
+                      key={setindex}
+                    >
+                      {set.reps}
+                    </p>
+                  ))}
+                </td>
+                <td className=" border border-yellow-500 text-lg">
+                  {exercise.sets.map((set: any, setindex: number) => (
+                    <p
+                      className="py-4 text-center border-yellow-500 border-b text-lg"
+                      key={index}
+                    >
+                      {set.weight}
+                    </p>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+    setDisplayWorkoutData(jsxElement);
+  };
+
   return (
     <div className="py-6 flex flex-col justify-between h-full items-center">
       <h1 className="text-4xl">Your Dashboard</h1>
@@ -190,71 +248,18 @@ export default function Dashboard() {
               </Link>
             </>
           ) : (
-            <table className="table-auto border-collapse border border-yellow-500 m-auto w-full">
-              <thead>
-                <tr>
-                  <th className="border border-yellow-500 text-2xl">Date</th>
-                  <th className="border border-yellow-500 text-2xl">
-                    Exercise
-                  </th>
-                  <th className="border border-yellow-500 text-2xl">Reps</th>
-                  <th className="border border-yellow-500 text-2xl">Weight</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userWorkoutData?.map((data: any, index: number) => (
-                  <tr key={index}>
-                    <td className="border border-yellow-500 text-lg">
-                      {new Date(data!.date).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      })}
-                    </td>
-                    <td className="border border-yellow-500 text-lg">
-                      {data!.exercises.map((exercise: any, idx: any) => (
-                        <div key={idx}>
-                          {exercise.sets.map((set: any, setindex: number) => (
-                            <p
-                              className="py-4 text-center border-yellow-500 border-b text-lg"
-                              key={setindex}
-                            >
-                              {exercise.name}
-                            </p>
-                          ))}
-                        </div>
-                      ))}
-                    </td>
-                    <td className=" border border-yellow-500 text-lg">
-                      {data.exercises.map((exercise: any, idx: any) => (
-                        <div key={idx}>
-                          {exercise.sets.map((set: any, setindex: number) => (
-                            <p
-                              className="py-4 text-center border-yellow-500 border-b text-lg"
-                              key={setindex}
-                            >
-                              {set.reps}
-                            </p>
-                          ))}
-                        </div>
-                      ))}
-                    </td>
-                    <td className=" border border-yellow-500 text-lg">
-                      {data.exercises.map((exercise: any, idx: any) =>
-                        exercise.sets.map((set: any, setindex: number) => (
-                          <p
-                            className="py-4 text-center border-yellow-500 border-b text-lg"
-                            key={index}
-                          >
-                            {set.weight}
-                          </p>
-                        ))
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <>
+              {userWorkoutData?.map((data: any, index: number) => (
+                <button key={index} onClick={() => displayWorkout(index)}>
+                  {new Date(data!.date).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
+                </button>
+              ))}
+              {displayWorkoutData}
+            </>
           )}
         </div>
       )}
