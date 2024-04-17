@@ -86,7 +86,7 @@ export default function Dashboard() {
                   {exercise.sets.map((set: any, setindex: number) => (
                     <p
                       className="py-4 text-center border-yellow-500 border-b text-lg"
-                      key={setindex}
+                      key={`${idx}-${setindex}`}
                     >
                       {exercise.name}
                     </p>
@@ -96,7 +96,7 @@ export default function Dashboard() {
                   {exercise.sets.map((set: any, setindex: number) => (
                     <p
                       className="py-4 text-center border-yellow-500 border-b text-lg"
-                      key={setindex}
+                      key={`${idx}-${setindex}`}
                     >
                       {set.reps}
                     </p>
@@ -106,7 +106,7 @@ export default function Dashboard() {
                   {exercise.sets.map((set: any, setindex: number) => (
                     <p
                       className="py-4 text-center border-yellow-500 border-b text-lg"
-                      key={index}
+                      key={`${idx}-${setindex}`}
                     >
                       {set.weight}
                     </p>
@@ -249,15 +249,25 @@ export default function Dashboard() {
             </>
           ) : (
             <>
-              {userWorkoutData?.map((data: any, index: number) => (
-                <button key={index} onClick={() => displayWorkout(index)}>
-                  {new Date(data!.date).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </button>
-              ))}
+              <div className="flex justify-around w-full">
+                {userWorkoutData?.map((data: any, index: number) => (
+                  <button
+                    className="my-4 text-lg p-2 rounded-xl bg-amber-600 active:bg-amber-500 "
+                    key={index}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      displayWorkout(index);
+                    }}
+                  >
+                    {new Date(data!.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </button>
+                ))}
+              </div>
               {displayWorkoutData}
             </>
           )}
