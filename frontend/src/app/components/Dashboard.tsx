@@ -5,9 +5,17 @@ import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import {
+  JSXElementConstructor,
+  PromiseLikeOfReactNode,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  useEffect,
+  useState,
+} from "react";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
-import { workoutDataArray } from "../types/workoutData";
+import { WorkoutDataArray } from "../types/workoutData";
 
 export default function Dashboard() {
   const [userWorkoutProfile, setUserWorkoutProfile] =
@@ -16,7 +24,7 @@ export default function Dashboard() {
   const [workoutDetailsError, setWorkoutDetailsError] = useState("");
   const { data: session } = useSession();
   const [userWorkoutData, setUserWorkoutData] =
-    useState<workoutDataArray | null>(null);
+    useState<WorkoutDataArray | null>(null);
 
   if (session === null) redirect("/signin");
 
@@ -193,7 +201,7 @@ export default function Dashboard() {
                 <tbody>
                   <td>
                     <ul>
-                      {userWorkoutData?.map((data, index) => (
+                      {userWorkoutData?.map((data: any, index: number) => (
                         <li key={index}>
                           {new Date(data!.date).toLocaleDateString("en-GB", {
                             day: "2-digit",
@@ -206,9 +214,43 @@ export default function Dashboard() {
                   </td>
                   <td>
                     <ul>
-                      {/*userWorkoutData?.map((data, index) => (
-                        <li key={index}>{data!.exercises.name!}</li>
-                      ))*/}
+                      {userWorkoutData?.map((data: any, index: number) => (
+                        <ul key={index}>
+                          {data!.exercises.map((exercise: any, idx: any) => (
+                            <li key={idx}>{exercise.name!}</li>
+                          ))}
+                        </ul>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      {userWorkoutData?.map((data: any, index: number) => (
+                        <ul key={index}>
+                          {data!.exercises.map((exercise: any, idx: any) => (
+                            <ul key={idx}>
+                              {exercise.sets.map((set: any, index: number) => (
+                                <li key={index}>{set.reps}</li>
+                              ))}
+                            </ul>
+                          ))}
+                        </ul>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      {userWorkoutData?.map((data: any, index: number) => (
+                        <ul key={index}>
+                          {data!.exercises.map((exercise: any, idx: any) => (
+                            <ul key={idx}>
+                              {exercise.sets.map((set: any, index: number) => (
+                                <li key={index}>{set.weight}</li>
+                              ))}
+                            </ul>
+                          ))}
+                        </ul>
+                      ))}
                     </ul>
                   </td>
                 </tbody>
