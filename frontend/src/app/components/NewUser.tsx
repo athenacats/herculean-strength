@@ -115,17 +115,16 @@ export default function NewUser() {
       ...prevData,
       dots: dotsValue.toString(),
     }));
+    return axios.post("api/workoutProfile", {
+      userName: session?.user?.name,
+      userEmail: session?.user?.email,
+      formData: formData,
+    });
   };
 
   const submitForm = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dotsformula();
-    axios
-      .post("api/workoutProfile", {
-        userName: session?.user?.name,
-        userEmail: session?.user?.email,
-        formData: formData,
-      })
+    dotsformula()
       .then(() => router.replace("/"))
       .catch((err) => console.log(err));
   };
@@ -146,7 +145,7 @@ export default function NewUser() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Sex:</label>
             <input
               type="radio"
@@ -172,7 +171,7 @@ export default function NewUser() {
         );
       case 2:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Age:</label>
             <input
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
@@ -193,7 +192,7 @@ export default function NewUser() {
         );
       case 3:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Which units would you prefer?</label>
             <input
               type="radio"
@@ -217,7 +216,7 @@ export default function NewUser() {
         );
       case 4:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Which units would you prefer?</label>
             <input
               type="radio"
@@ -241,7 +240,7 @@ export default function NewUser() {
         );
       case 5:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Height:</label>
             <input
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
@@ -256,7 +255,7 @@ export default function NewUser() {
         );
       case 6:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">Weight:</label>
             <input
               className="border-2 w-52 pl-2 rounded-lg focus:border-amber-400 border-amber-600 "
@@ -404,7 +403,7 @@ export default function NewUser() {
         );
       case 10:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">
               What are your current maxes? (estimates are okay):
             </label>
@@ -445,7 +444,7 @@ export default function NewUser() {
         );
       case 11:
         return (
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-5/6">
             <label className="text-xl">
               What are your goal maxes? (estimates are okay):
             </label>
