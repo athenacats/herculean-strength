@@ -7,7 +7,6 @@ import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import {
   JSXElementConstructor,
-  PromiseLikeOfReactNode,
   ReactElement,
   ReactNode,
   ReactPortal,

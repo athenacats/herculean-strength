@@ -9,6 +9,7 @@ import AuthProvider from "./Providers";
 const yanone = Yanone_Kaffeesatz({
   subsets: ["latin"],
   display: "swap",
+  preload: true,
   adjustFontFallback: false,
 });
 
