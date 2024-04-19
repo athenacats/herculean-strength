@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import { UserWorkoutProfileInfo } from "../types/UserWorkoutProfileInfo";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function StartWorkout() {
   const [workout, setWorkout]: any[] = useState(null);
@@ -73,7 +74,16 @@ function StartWorkout() {
   };
 
   if (!workout) {
-    <div>Loading...</div>;
+    <div>
+      <h2 className="text-4xl text-center my-8">
+        You dont have an active workout!
+      </h2>
+      <Link href="/">
+        <button className="my-8 text-2xl p-2 rounded-xl bg-amber-600 ">
+          Head Home
+        </button>
+      </Link>
+    </div>;
   } else {
     return (
       <div className="flex flex-col items-center">
