@@ -182,14 +182,15 @@ export default function Dashboard() {
       <h1 className="text-4xl">Your Dashboard</h1>
       <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
         <div>
-          Name: <span className="font-bold">{session?.user?.name}</span>
+          Name: <span className="font-bold text-lg">{session?.user?.name}</span>
         </div>
         <div>
-          Email: <span className="font-bold">{session?.user?.email}</span>
+          Email:{" "}
+          <span className="font-bold text-lg">{session?.user?.email}</span>
         </div>
         <button
           onClick={() => handleSignOut()}
-          className="bg-amber-600 p-2 rounded-xl "
+          className="bg-amber-600 p-2 rounded-xl text-lg hover:text-white"
         >
           Log Out
         </button>
@@ -202,7 +203,7 @@ export default function Dashboard() {
         </Link>
       ) : (
         <div className="w-5/6 flex flex-col justify-center items-center gap-8">
-          <h2 className="text-2xl text-center font-bold">Your Data</h2>
+          <h2 className="text-4xl text-center font-bold">Your Data</h2>
           {dataError ? (
             <h4 className="text-amber-600 font-bold">{dataError}</h4>
           ) : (
@@ -288,7 +289,7 @@ export default function Dashboard() {
           </div>
           <button
             onClick={editDetails}
-            className="my-4 text-lg p-2 rounded-xl bg-amber-600"
+            className="my-4 text-lg hover:text-white p-2 rounded-xl bg-amber-600"
           >
             Edit My Details and Goals
           </button>
@@ -310,7 +311,7 @@ export default function Dashboard() {
               No data to display! Start your first workout!
             </h4>{" "}
             <Link href="/preworkout">
-              <button className="bg-amber-600 p-2 rounded-xl">
+              <button className="bg-amber-600 p-2 rounded-xl text-lg hover:text-white">
                 Start a new workout
               </button>
             </Link>
@@ -320,7 +321,7 @@ export default function Dashboard() {
             <div className="flex justify-around w-full flex-wrap">
               {userWorkoutData?.map((data: any, index: number) => (
                 <button
-                  className="my-4 text-base p-2 rounded-xl bg-amber-600 active:bg-amber-400 focus:bg-amber-400 "
+                  className="my-4 text-base p-2 rounded-xl bg-amber-600 active:bg-amber-400 focus:bg-amber-400 hover:text-white "
                   key={index}
                   type="button"
                   onClick={(e) => {
