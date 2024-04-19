@@ -56,7 +56,7 @@ export default function PreWorkout() {
 
   const handleWorkoutType = (e: any) => {
     const selectedValue = e.target.value;
-    console.log(selectedValue);
+
     setWorkoutType(selectedValue);
   };
 
@@ -86,7 +86,6 @@ export default function PreWorkout() {
       workoutTypeToday: workoutType,
     };
 
-    console.log("preworkout", data);
     const workout = determineWorkout(data);
     sessionStorage.setItem("workout", JSON.stringify(workout));
     router.replace("start-workout");

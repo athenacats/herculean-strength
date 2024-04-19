@@ -9,7 +9,6 @@ export async function POST(req: any, res: any) {
   try {
     await dbConnect();
     const { name, email, password } = await req.json();
-    console.log(name);
 
     /*const user = await UserModel.findOne({ email });
     if (user) {
@@ -25,7 +24,7 @@ export async function POST(req: any, res: any) {
       password: encryptedPassword,
       isAdmin: false,
     });
-    console.log(newUser);
+
     await newUser.save();
 
     return NextResponse.json({ message: "User registered" });

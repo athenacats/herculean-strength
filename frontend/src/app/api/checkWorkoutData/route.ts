@@ -13,7 +13,6 @@ export async function GET(
   res: NextResponse,
   _next: any
 ) {
-  console.log("here workout profile");
   try {
     await dbConnect();
 

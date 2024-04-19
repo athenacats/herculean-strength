@@ -48,7 +48,7 @@ export default function Dashboard() {
       .get("api/checkWorkoutData")
       .then((res) => {
         const hasData = res.data;
-        console.log(hasData);
+
         setUserWorkoutData(hasData);
       })
 
@@ -77,7 +77,7 @@ export default function Dashboard() {
             <tr>
               <th className="border border-yellow-500 text-2xl">Exercise</th>
               <th className="border border-yellow-500 text-2xl">Reps</th>
-              <th className="border border-yellow-500 text-2xl">Weight</th>
+              <th className="border border-yellow-500 text-2xl">Weight {}</th>
             </tr>
           </thead>
           <tbody>
@@ -162,7 +162,7 @@ export default function Dashboard() {
         (A * bw ** 4 + B * bw ** 3 + C * bw ** 2 + D * bw + E)
       ).toFixed(2)
     );
-    console.log(dots);
+
     setDotsValue(dots);
   }, [userWorkoutProfile]);
 

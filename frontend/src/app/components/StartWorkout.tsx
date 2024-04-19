@@ -20,7 +20,6 @@ function StartWorkout() {
       newValues[index] = value;
       return newValues;
     });
-    console.log(inputValues);
   };
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function StartWorkout() {
       .catch((error) => {
         console.error("Error saving workout details:", error);
       });
-    console.log("here handle submit");
   };
 
   const renderTimersForSets = (exerciseSets: any[]) => {

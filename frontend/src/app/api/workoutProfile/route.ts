@@ -10,11 +10,6 @@ export async function POST(req: any, res: any) {
     await dbConnect();
     const { userName, userEmail, formData } = await req.json();
 
-    //const user = await UserModel.findOne({ email: userEmail });
-    //console.log(user);
-    //if (!user)
-    //  res.status(404).json({ success: false, error: "User not found" });
-
     const newWorkoutProfile = new UserWorkoutProfileModel({
       user: userEmail,
       sex: formData.sex,
@@ -35,9 +30,8 @@ export async function POST(req: any, res: any) {
       specialization: formData.specialization,
       notifications: formData.notifications,
     });
-    console.log(newWorkoutProfile);
+
     await newWorkoutProfile.save();
-    console.log("success");
 
     return NextResponse.json({ message: "User workout profile registered" });
   } catch (error) {

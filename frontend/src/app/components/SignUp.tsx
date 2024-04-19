@@ -26,7 +26,7 @@ export default function SignUp() {
       });
 
       const user = userResponse.data.user;
-      console.log(user);
+
       if (user) {
         setError("User already exists");
         return;

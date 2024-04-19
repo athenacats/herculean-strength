@@ -26,7 +26,6 @@ export default function SignIn() {
         return;
       }
       router.replace("dashboard");
-      console.log("success");
     } catch (error) {
       console.log(error);
     }

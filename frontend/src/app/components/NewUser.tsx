@@ -36,13 +36,11 @@ export default function NewUser() {
     const { name, value, type } = e.target;
 
     if (type === "radio") {
-      console.log("radio ", formData);
       setFormData({
         ...formData,
         [name]: value,
       });
     } else {
-      console.log("not ", formData);
       setFormData({
         ...formData,
         [name]: String(value),
@@ -75,50 +73,9 @@ export default function NewUser() {
     setCurrName("");
   };
 
-  /*const dotsformula = () => {
-    let bw = parseInt(formData.weight);
-    let result: number;
-    if (formData.weightUnits === "kg") {
-      result =
-        Number(formData.currBenchMax) +
-        Number(formData.currDeadliftMax) +
-        Number(formData.currSquatMax);
-    } else {
-      result =
-        (Number(formData.currBenchMax) +
-          Number(formData.currDeadliftMax) +
-          Number(formData.currSquatMax)) *
-        2.2;
-    }
-
-    let A, B, C, D, E;
-    A = B = C = D = E = 0;
-    if (formData.sex === "Female") {
-      A = -0.0000010706;
-      B = 0.0005158568;
-      C = -0.1126655495;
-      D = 13.6175032;
-      E = -57.96288;
-    } else {
-      A = 0.000001093;
-      B = 0.0007391293;
-      C = 0.1918759221;
-      D = 24.0900756;
-      E = 307.75076;
-    }
-    const dotsValue =
-      (result * 500) / (A * bw ** 4 + B * bw ** 3 + C * bw ** 2 + D * bw + E);
-    console.log(dotsValue);
-
-    setFormData((prevData) => ({
-      ...prevData,
-      dots: dotsValue,
-    }));
-  };*/
-
   const submitForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(formData);
+
     axios
       .post("api/workoutProfile", {
         userName: session?.user?.name,
@@ -130,7 +87,6 @@ export default function NewUser() {
   };
 
   const handleNext = () => {
-    console.log(formData);
     if (filled === "") {
       setCurrError("Please select a value");
     } else {
@@ -462,8 +418,6 @@ export default function NewUser() {
               onChange={handleInput}
               placeholder="Goal Squat Max"
               onBlur={() => {
-                console.log("Current Squat Max:", formData.currSquatMax);
-                console.log("Goal Squat Max:", formData.goalSquatMax);
                 Number(formData.goalSquatMax) >= Number(formData.currSquatMax)
                   ? setCurrError("")
                   : setCurrError(
@@ -509,7 +463,6 @@ export default function NewUser() {
               value={formData.goalDeadliftMax}
               onChange={handleInput}
               onBlur={() => {
-                console.log(formData.goalDeadliftMax, formData.currDeadliftMax);
                 formData.goalDeadliftMax >= formData.currDeadliftMax
                   ? setCurrError("")
                   : setCurrError(

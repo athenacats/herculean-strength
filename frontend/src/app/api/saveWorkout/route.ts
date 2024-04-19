@@ -8,14 +8,12 @@ export async function POST(req: any, res: any) {
   try {
     await dbConnect();
     const { workoutDetails } = await req.json();
-    console.log(workoutDetails);
 
     const newWorkout = new WorkoutDetailsModel({
       user: workoutDetails.userEmail,
       date: workoutDetails.date,
       exercises: workoutDetails.exercises,
     });
-    console.log(newWorkout);
     await newWorkout.save();
 
     return NextResponse.json({ message: "Workout registered" });
