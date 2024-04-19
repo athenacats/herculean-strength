@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "./assets/icons8-powerlifting-64.png";
 import Link from "next/link";
 import AuthProvider from "./Providers";
+import Head from "next/head";
 
 const yanone = Yanone_Kaffeesatz({
   subsets: ["latin"],
@@ -16,6 +17,9 @@ const yanone = Yanone_Kaffeesatz({
 export const metadata: Metadata = {
   title: "Herculean Strength",
   description: "A Powerlifting Strength App",
+  icons: {
+    icon: "favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body className={yanone.className}>
         <AuthProvider>
           <header className="flex justify-center">
