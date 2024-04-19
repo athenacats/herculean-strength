@@ -641,14 +641,14 @@ export default function NewUser() {
         {currentStep !== 14 ? (
           <>
             <button
-              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              className="bg-amber-600 w-28 p-2 rounded-xl hover:text-white disabled:opacity-75 disabled:cursor-not-allowed"
               onClick={handlePrevious}
               disabled={currentStep === 1 || currError !== ""}
             >
               Previous
             </button>
             <button
-              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              className="bg-amber-600 hover:text-white w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
               onClick={handleNext}
               disabled={currError !== "" || filled === ""}
             >
@@ -658,17 +658,17 @@ export default function NewUser() {
         ) : (
           <>
             <button
-              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
-              onClick={submitForm}
-            >
-              Submit Form
-            </button>
-            <button
-              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
+              className="bg-white text-amber-600 border-amber-600 border hover:text-black w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed"
               onClick={restartForm}
             >
               Restart Form
             </button>{" "}
+            <button
+              className="bg-amber-600 w-28 p-2 rounded-xl disabled:opacity-75 disabled:cursor-not-allowed hover:text-white"
+              onClick={submitForm}
+            >
+              Submit Form
+            </button>
           </>
         )}
       </div>
