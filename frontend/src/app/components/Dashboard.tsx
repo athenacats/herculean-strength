@@ -27,6 +27,7 @@ export default function Dashboard() {
   const [displayWorkoutData, setDisplayWorkoutData] =
     useState<JSX.Element | null>(null);
   const router = useRouter();
+  const [dotsValue, setDotsValue] = useState(0);
 
   if (session === null) redirect("/signin");
 
@@ -121,7 +122,52 @@ export default function Dashboard() {
     setDisplayWorkoutData(jsxElement);
   };
 
+  useEffect(() => {
+    if (!userWorkoutProfile) {
+      return;
+    }
+    let bw = userWorkoutProfile!.weight;
+    let result: number;
+    if (userWorkoutProfile!.weightUnits === "kg") {
+      result =
+        Number(userWorkoutProfile!.currBenchMax) +
+        Number(userWorkoutProfile!.currDeadliftMax) +
+        Number(userWorkoutProfile!.currSquatMax);
+    } else {
+      result =
+        (Number(userWorkoutProfile!.currBenchMax) +
+          Number(userWorkoutProfile!.currDeadliftMax) +
+          Number(userWorkoutProfile!.currSquatMax)) *
+        2.2;
+    }
+
+    let A, B, C, D, E;
+    A = B = C = D = E = 0;
+    if (userWorkoutProfile!.sex === "Female") {
+      A = -0.0000010706;
+      B = 0.0005158568;
+      C = -0.1126655495;
+      D = 13.6175032;
+      E = -57.96288;
+    } else {
+      A = 0.000001093;
+      B = 0.0007391293;
+      C = 0.1918759221;
+      D = 24.0900756;
+      E = 307.75076;
+    }
+    const dots = Number(
+      (
+        (result * 500) /
+        (A * bw ** 4 + B * bw ** 3 + C * bw ** 2 + D * bw + E)
+      ).toFixed(2)
+    );
+    console.log(dots);
+    setDotsValue(dots);
+  }, [userWorkoutProfile]);
+
   const editDetails = () => {
+    setDotsValue(0);
     axios
       .delete("api/editDetails")
       .then((res) => {
@@ -178,6 +224,10 @@ export default function Dashboard() {
               <h4>
                 {userWorkoutProfile.weight} {userWorkoutProfile.weightUnits}
               </h4>
+            </div>
+            <div className="flex justify-between text-lg">
+              <h4 className="text-amber-600 font-bold">Dots:</h4>
+              <h4>{dotsValue}</h4>
             </div>
             <div className="flex justify-between text-lg">
               <h4 className="text-amber-600 font-bold">Goals:</h4>
