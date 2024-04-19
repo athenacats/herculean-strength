@@ -30,6 +30,7 @@ export default function RootLayout({
           <header className="flex justify-center">
             <Link href="/">
               <Image
+                priority
                 height={64}
                 width={64}
                 alt="powerlifting icon from icons8"
