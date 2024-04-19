@@ -67,6 +67,11 @@ function StartWorkout() {
       });
   };
 
+  const handleQuit = () => {
+    sessionStorage.removeItem("workout");
+    router.replace("/");
+  };
+
   const renderTimersForSets = (exerciseSets: any[]) => {
     return exerciseSets.map((set: any, setIndex: number) => (
       <Timer key={setIndex} />
@@ -157,12 +162,20 @@ function StartWorkout() {
               ))}
           </tbody>
         </table>
-        <Button
-          onClick={handleSubmit}
-          className="my-8 text-2xl p-2 rounded-xl bg-amber-600 "
-        >
-          Complete Workout
-        </Button>
+        <div className="flex  gap-8">
+          <Button
+            onClick={handleQuit}
+            className="my-8 text-2xl p-2 rounded-xl bg-white text-amber-600 border-amber-600 border hover:text-black"
+          >
+            Quit Workout
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            className="my-8 text-2xl p-2 rounded-xl bg-amber-600 hover:text-white"
+          >
+            Complete Workout
+          </Button>
+        </div>
       </div>
     );
   }
