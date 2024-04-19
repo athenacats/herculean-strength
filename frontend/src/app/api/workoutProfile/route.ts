@@ -34,7 +34,6 @@ export async function POST(req: any, res: any) {
       goalDeadliftMax: formData.goalDeadliftMax,
       specialization: formData.specialization,
       notifications: formData.notifications,
-      dots: formData.dots,
     });
     console.log(newWorkoutProfile);
     await newWorkoutProfile.save();

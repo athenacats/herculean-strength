@@ -24,7 +24,6 @@ export default function NewUser() {
     goalDeadliftMax: "",
     specialization: "",
     notifications: "",
-    dots: "",
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -35,6 +34,7 @@ export default function NewUser() {
 
   const handleInput = (e: any) => {
     const { name, value, type } = e.target;
+
     if (type === "radio") {
       console.log("radio ", formData);
       setFormData({
@@ -67,7 +67,7 @@ export default function NewUser() {
     setFormData((prevData) => ({
       ...(Object.fromEntries(
         Object.keys(formData).map((key) => [key, ""])
-      ) as typeof formData),
+      ) as unknown as typeof formData),
     }));
     setCurrentStep(1);
     setCurrError("");
@@ -75,7 +75,7 @@ export default function NewUser() {
     setCurrName("");
   };
 
-  const dotsformula = () => {
+  /*const dotsformula = () => {
     let bw = parseInt(formData.weight);
     let result: number;
     if (formData.weightUnits === "kg") {
@@ -91,7 +91,6 @@ export default function NewUser() {
         2.2;
     }
 
-    console.log(bw);
     let A, B, C, D, E;
     A = B = C = D = E = 0;
     if (formData.sex === "Female") {
@@ -113,18 +112,19 @@ export default function NewUser() {
 
     setFormData((prevData) => ({
       ...prevData,
-      dots: dotsValue.toString(),
+      dots: dotsValue,
     }));
-    return axios.post("api/workoutProfile", {
-      userName: session?.user?.name,
-      userEmail: session?.user?.email,
-      formData: formData,
-    });
-  };
+  };*/
 
-  const submitForm = (e: React.SyntheticEvent) => {
+  const submitForm = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dotsformula()
+    console.log(formData);
+    axios
+      .post("api/workoutProfile", {
+        userName: session?.user?.name,
+        userEmail: session?.user?.email,
+        formData: formData,
+      })
       .then(() => router.replace("/"))
       .catch((err) => console.log(err));
   };

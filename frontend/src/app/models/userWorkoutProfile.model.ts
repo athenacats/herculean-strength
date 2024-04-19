@@ -21,7 +21,6 @@ export const userWorkoutProfileSchema = new Schema<UserWorkoutProfileInfo>(
     goalDeadliftMax: { type: Number, required: true },
     specialization: { type: String, required: true },
     notifications: { type: String, required: true },
-    dots: { type: Number, required: true },
   },
   {
     timestamps: true,
