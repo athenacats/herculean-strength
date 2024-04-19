@@ -39,10 +39,12 @@ export default function Home() {
           </h3>
           <div className="button-container flex gap-10">
             <Link href="/signup">
-              <button className="bg-amber-600 p-2 rounded-xl">New User</button>
+              <button className="bg-amber-600 p-2 rounded-xl text-2xl hover:text-white">
+                New User
+              </button>
             </Link>
             <Link href="/signin">
-              <button className="bg-amber-600 p-2 rounded-xl">
+              <button className="bg-amber-600 p-2 rounded-xl text-2xl hover:text-white">
                 Returning User
               </button>
             </Link>
@@ -54,13 +56,13 @@ export default function Home() {
           <div className="button-container flex gap-10">
             {!workout && userWorkoutProfile ? (
               <Link href="/preworkout">
-                <button className="bg-amber-600 p-2 rounded-xl">
+                <button className="bg-amber-600 p-2 rounded-xl text-2xl hover:text-white">
                   Start a new workout
                 </button>
               </Link>
             ) : workout && userWorkoutProfile ? (
               <Link href="/start-workout">
-                <button className="bg-amber-600 p-2 rounded-xl">
+                <button className="bg-amber-600 p-2 rounded-xl text-2xl hover:text-white">
                   Resume your workout
                 </button>
               </Link>
@@ -71,7 +73,7 @@ export default function Home() {
             )}
 
             <Link href="/dashboard">
-              <button className="bg-amber-600 p-2 rounded-xl">
+              <button className="bg-amber-600 p-2 rounded-xl text-2xl hover:text-white">
                 See your previous stats
               </button>
             </Link>
