@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { dbConnect } from "@/app/lib/mongodb";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { NextResponse } from "next/server";
 import { UserWorkoutProfileModel } from "@/app/models/userWorkoutProfile.model";
 
