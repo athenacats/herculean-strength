@@ -6,6 +6,8 @@ import { authOptions } from "../auth/[...nextauth]/options";
 import { NextRequest, NextResponse } from "next/server";
 dotenv.config();
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   error: any,
   req: NextRequest,

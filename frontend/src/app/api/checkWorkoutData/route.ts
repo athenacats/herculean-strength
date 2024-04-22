@@ -7,6 +7,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { WorkoutDetailsModel } from "@/app/models/workoutDetails";
 dotenv.config();
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   error: any,
   req: NextRequest,
