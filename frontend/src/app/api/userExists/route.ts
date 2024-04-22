@@ -2,11 +2,9 @@ import dotenv from "dotenv";
 dotenv.config();
 import { dbConnect } from "@/app/lib/mongodb";
 import { UserModel } from "@/app/models/user.model";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: {
-  json: () => PromiseLike<{ email: any }> | { email: any };
-}) {
+export async function POST(req: any) {
   try {
     await dbConnect();
     const { email } = await req.json();
